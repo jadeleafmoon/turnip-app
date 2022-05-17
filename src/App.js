@@ -38,16 +38,12 @@ function App() {
 	// Render
 	return (
 		<div>
-			<h1>Ravi - Fullstack Example</h1>
+			<h1>Turnip</h1>
 			<h2>{color}</h2>
 			<button onClick={handleButtonClick}>Change color</button>
-			<button onClick={handleGetClick}>Get</button>
-
-			<p>The version on PostgreSQL is:</p>
-			<p>{version}</p>
 
 			<h2>Items</h2>
-			<button onClick={handleDisplayItemsClick}>Display Item</button>
+			<button onClick={handleDisplayItemsClick}>Display Items</button>
 			<section>
 				{items.map((item) => {
 					return <div key={uuidv4()}>{item.name}</div>;
