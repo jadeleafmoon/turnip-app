@@ -26,4 +26,12 @@ app.get('/hello', (req, res) => {
 	// 	});
 });
 
+app.get('/items', (req, res) => {
+	knex('items').returning('*').then(data => {
+		console.log("🔥 Server", data);
+		res.send(data);
+	});
+	
+});
+
 app.listen(PORT, console.log(`You are listening on port ${PORT}`));
