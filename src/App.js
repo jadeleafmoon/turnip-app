@@ -33,6 +33,7 @@ function App() {
       <h2>{color}</h2>
       <button onClick={handleButtonClick}>Change color</button>
       <button onClick={handleGetClick}>Get</button>
+      <button onClick={handleGetClick}>Get Products</button>
       <p>The version on PostgreSQL is:</p>
       <p>{version}</p>
     </div>
