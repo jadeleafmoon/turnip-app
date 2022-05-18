@@ -6,6 +6,10 @@ function App() {
 	// State
 	const [ color, setColor ] = useState('blue');
 	const [ items, setItems ] = useState([]);
+	const [ selectedItem, setSelectedItem] = useState("");
+	const [ currentView, setCurrentView ] = useState("all items");
+
+	const itemRef = useRef(null);
 
 	// Hooks
 	useEffect(() => {
@@ -24,10 +28,15 @@ function App() {
 		});
 	};
 
-	const handleClickSingleItem = () => {
-		console.log("-- clicked item");
+	const handleClickItem = (item) => {
+		// console.log("-- clicked item");
+		console.log(item.name);
+		setCurrentView("single item");
 	};
 
+	const handleClickTitle = () => {
+		setCurrentView("all items");
+	};
 	// Render
 	return (
 		<div>
@@ -37,9 +46,11 @@ function App() {
 
 			<h2>Items</h2>
 			<button onClick={handleDisplayItemsClick}>Display Items</button>
+
+			
 			<section>
 				{items.map((item) => {
-					return <div key={uuidv4()} onClick={handleClickSingleItem}>
+					return <div key={uuidv4()} onClick={() => handleClickItem(item)}>
 						<span>{item.name}</span>
 						<span>${item.price}</span>
 						
