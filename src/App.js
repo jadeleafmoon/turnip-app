@@ -26,15 +26,18 @@ function App() {
 		axios.get('/items').then((response) => {
 			setItems(response.data);
 		});
+		setCurrentView("all items");
 	};
 
 	const handleClickItem = (item) => {
 		// console.log("-- clicked item");
 		console.log(item.name);
+		setSelectedItem(item);
 		setCurrentView("single item");
 	};
 
-	const handleClickTitle = () => {
+	const handleClickTitle = (item) => {
+		setSelectedItem("");
 		setCurrentView("all items");
 	};
 	// Render
@@ -45,10 +48,10 @@ function App() {
 			<button onClick={handleButtonClick}>Change color</button>
 
 			<h2>Items</h2>
-			<button onClick={handleDisplayItemsClick}>Display Items</button>
+			<button onClick={handleDisplayItemsClick}>Display All Items</button>
 
-			
-			<section>
+			{ currentView === "all items" 
+			? <section>
 				{items.map((item) => {
 					return <div key={uuidv4()} onClick={() => handleClickItem(item)}>
 						<span>{item.name}</span>
@@ -57,6 +60,10 @@ function App() {
 						</div>;
 				})}
 			</section>
+			: <section>
+				<div> { selectedItem.name }</div>
+			</section>
+			}
 		</div>
 	);
 }
