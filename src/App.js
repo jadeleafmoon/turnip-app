@@ -6,64 +6,87 @@ function App() {
 	// State
 	const [ color, setColor ] = useState('blue');
 	const [ items, setItems ] = useState([]);
-	const [ selectedItem, setSelectedItem] = useState("");
-	const [ currentView, setCurrentView ] = useState("all items");
+	const [ selectedItem, setSelectedItem ] = useState('');
+	const [ currentView, setCurrentView ] = useState('all items');
 
-	const itemRef = useRef(null);
+	const itemNameRef = useRef(null);
+	const itemPriceRef = useRef(null);
 
 	// Hooks
 	useEffect(() => {
 		console.log('First render.');
+		handleDisplayAllItems();
 	}, []);
 
 	// Handlers
-	const handleButtonClick = () => {
-		if (color === 'blue') setColor('red');
-		if (color === 'red') setColor('blue');
-	};
-
 	const handleDisplayItemsClick = () => {
-		axios.get('/items').then((response) => {
-			setItems(response.data);
-		});
-		setCurrentView("all items");
+		handleDisplayAllItems();
 	};
 
 	const handleClickItem = (item) => {
-		// console.log("-- clicked item");
-		console.log(item.name);
 		setSelectedItem(item);
-		setCurrentView("single item");
+		setCurrentView('single item');
 	};
 
 	const handleClickTitle = (item) => {
-		setSelectedItem("");
-		setCurrentView("all items");
+		handleDisplayAllItems();
 	};
+
+	const handleDisplayAllItems = () => {
+		axios.get('/items').then((response) => {
+			setItems(response.data);
+		});
+		setCurrentView('all items');
+	};
+
+	const handleAddItemClick = () => {
+		const newItem = {
+			name  : itemNameRef.current.value,
+			price : parseInt(itemPriceRef.current.value)
+		};
+		console.log('New item:', newItem);
+	};
+
 	// Render
 	return (
 		<div>
-			<h1>Turnip</h1>
-			<h2>{color}</h2>
-			<button onClick={handleButtonClick}>Change color</button>
+			<h1 onClick={handleDisplayAllItems}>Turnip</h1>
 
-			<h2>Items</h2>
-			<button onClick={handleDisplayItemsClick}>Display All Items</button>
+			<section>
+				<h2>Add an Item</h2>
+				<label>
+					<input type="text" name="item-name" ref={itemNameRef} />
+				</label>
 
-			{ currentView === "all items" 
-			? <section>
-				{items.map((item) => {
-					return <div key={uuidv4()} onClick={() => handleClickItem(item)}>
-						<span>{item.name}</span>
-						<span>${item.price}</span>
-						
-						</div>;
-				})}
+				<label>
+					<input type="text" name="item-price" ref={itemPriceRef} />
+				</label>
+
+				<button onClick={handleAddItemClick}>Add Item</button>
 			</section>
-			: <section>
-				<div> { selectedItem.name }</div>
+
+			<section>
+				<h2>Items</h2>
+				<button onClick={handleDisplayItemsClick}>Display All Items</button>
+
+				{currentView === 'all items' ? (
+					<section>
+						{items.map((item) => {
+							return (
+								<div key={uuidv4()} onClick={() => handleClickItem(item)}>
+									{item.name} {item.price}
+								</div>
+							);
+						})}
+					</section>
+				) : (
+					<section>
+						<div>
+							{selectedItem.name} {selectedItem.price}
+						</div>
+					</section>
+				)}
 			</section>
-			}
 		</div>
 	);
 }
