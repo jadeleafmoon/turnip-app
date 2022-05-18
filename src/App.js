@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 	// State
 	const [ color, setColor ] = useState('blue');
-	const [ version, setVersion ] = useState('Unknown :(');
 	const [ items, setItems ] = useState([]);
 
 	// Hooks
 	useEffect(() => {
-		console.log('First render');
+		console.log('First render.');
 	}, []);
 
 	// Handlers
@@ -19,20 +18,14 @@ function App() {
 		if (color === 'red') setColor('blue');
 	};
 
-	const handleGetClick = () => {
-		console.log('Get clicked.');
-
-		axios.get('/hello').then((response) => {
-			console.log('DATA:', response.data);
-			setVersion(response.data);
+	const handleDisplayItemsClick = () => {
+		axios.get('/items').then((response) => {
+			setItems(response.data);
 		});
 	};
 
-	const handleDisplayItemsClick = () => {
-		axios.get('/items').then((response) => {
-			console.log('-- Diplay Items:', response.data);
-			setItems(response.data);
-		});
+	const handleClickSingleItem = () => {
+		console.log("-- clicked item");
 	};
 
 	// Render
@@ -46,7 +39,11 @@ function App() {
 			<button onClick={handleDisplayItemsClick}>Display Items</button>
 			<section>
 				{items.map((item) => {
-					return <div key={uuidv4()}>{item.name}</div>;
+					return <div key={uuidv4()} onClick={handleClickSingleItem}>
+						<span>{item.name}</span>
+						<span>${item.price}</span>
+						
+						</div>;
 				})}
 			</section>
 		</div>
