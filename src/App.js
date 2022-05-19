@@ -111,7 +111,6 @@ function App() {
 								<div key={uuidv4()}>
 									<span>{item.id} {item.name} {item.price}</span>
 									<button onClick={() => handleClickItem(item)}>View</button>
-									<button onClick={() => handleClickDeleteItem(item)}>Delete</button>
 								</div>
 							);
 						})}
@@ -119,7 +118,8 @@ function App() {
 				) : (
 					<section>
 						<div>
-							{selectedItem.name} {selectedItem.price}
+							<span>{selectedItem.id} {selectedItem.name} {selectedItem.price}</span>
+							<button onClick={() => handleClickDeleteItem(selectedItem)}>Delete</button>
 						</div>
 					</section>
 				)}
