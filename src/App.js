@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import AddItemField from './components/AddItemField';
 import HelloTest from './components/HelloTest';
 import AllItems from './components/AllItems';
+import SelectedItem from './components/SelectedItem';
 
 function App() {
 	// State
@@ -18,8 +19,8 @@ function App() {
 	const [ editedItem, setEditedItem ] = useState('');
 
 	const [ itemToAdd, setItemToAdd ] = useState({
-		name: "",
-		price: ""
+		name  : '',
+		price : ''
 	});
 
 	const [ currentView, setCurrentView ] = useState('all items');
@@ -46,10 +47,12 @@ function App() {
 	};
 
 	const handleDisplayAllItems = () => {
-		axios.get('/items').then((response) => {
-			setItems(response.data);
-		}).then( () => setCurrentView('all items'));
-		
+		axios
+			.get('/items')
+			.then((response) => {
+				setItems(response.data);
+			})
+			.then(() => setCurrentView('all items'));
 	};
 
 	const handleClickAddItem = () => {
@@ -92,18 +95,17 @@ function App() {
 	const handleEditItem = (e) => {
 		e.preventDefault();
 
-		const fieldName = e.target.getAttribute("name");
+		const fieldName = e.target.getAttribute('name');
 		const textValue = e.target.value;
-		
+
 		const newItem = {};
 		newItem[fieldName] = textValue;
-		setItemToAdd( { ...itemToAdd, ...newItem } );
-
+		setItemToAdd({ ...itemToAdd, ...newItem });
 	};
 
 	const handleClickEditItemButton = (item) => {
 		const id = item.id;
-		const newEdit = { name: "Apple", price: 100};
+		const newEdit = { name: 'Apple', price: 100 };
 		axios
 			.patch(`/items/${id}`, newEdit)
 			.then((response) => {
@@ -123,36 +125,25 @@ function App() {
 	return (
 		<div>
 			<Navbar />
-			<AddItemField 
+			<AddItemField
 				handleClickAddItem={handleClickAddItem}
 				itemToAdd={itemToAdd}
 				setItemToAdd={setItemToAdd}
 				handleEditItem={handleEditItem}
-			/>			
+			/>
 
 			<section>
 				<h2>Items</h2>
 				<button onClick={handleDisplayItemsClick}>Display All Items</button>
 
 				{currentView === 'all items' ? (
-					<AllItems 
-						items={items}
-						handleClickItem={handleClickItem}
-					/>
+					<AllItems items={items} handleClickItem={handleClickItem} />
 				) : (
-					<section>
-						<div>
-							<span>
-								{selectedItem.id} {selectedItem.name} {selectedItem.price}
-							</span>
-							<button onClick={() => handleClickDeleteItem(selectedItem)}>
-								Delete
-							</button>
-							<button onClick={() => handleClickEditItem(selectedItem)}>
-								Edit
-							</button>
-						</div>
-					</section>
+					<SelectedItem
+						selectedItem={selectedItem}
+						handleClickDeleteItem={handleClickDeleteItem}
+						handleClickEditItem={handleClickEditItem}
+					/>
 				)}
 			</section>
 		</div>
