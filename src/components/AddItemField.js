@@ -1,20 +1,31 @@
 import React from 'react';
 
 const AddItemField = (props) => {
-    const { handleClickAddItem, itemNameRef, itemPriceRef } = props;
+	const { handleClickAddItem, handleEditItem, itemToAdd, setItemToAdd } = props;
 	return (
 		<section>
 			<h2>Add an Item</h2>
 			<label>
-				<input type="text" name="item-name" ref={itemNameRef} />
+				<input 
+                    type="text" 
+                    name="name"
+                    value={itemToAdd.name} 
+                    onChange={(e) => handleEditItem(e)} 
+                />
 			</label>
 
 			<label>
-				<input type="text" name="item-price" ref={itemPriceRef} />
+				<input 
+                    type="text" 
+                    name="price"
+                    value={itemToAdd.price} 
+                    onChange={(e) => handleEditItem(e)} 
+                />
 			</label>
 
 			<button onClick={handleClickAddItem}>Add Item</button>
-		</section>
+            <h3>Name: { itemToAdd.name } Price:{ itemToAdd.price }</h3>
+        </section>
 	);
 };
 

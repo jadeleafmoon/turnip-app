@@ -14,11 +14,14 @@ function App() {
 	const [ items, setItems ] = useState([]);
 	const [ selectedItem, setSelectedItem ] = useState('');
 	const [ editedItem, setEditedItem ] = useState('');
+
+	const [ itemToAdd, setItemToAdd ] = useState({
+		name: "",
+		price: ""
+	});
+
 	const [ currentView, setCurrentView ] = useState('all items');
 	const [ hello, setHello ] = useState('...blank...');
-
-	const itemNameRef = useRef(null);
-	const itemPriceRef = useRef(null);
 
 	// Hooks
 	useEffect(() => {
@@ -48,13 +51,13 @@ function App() {
 	};
 
 	const handleClickAddItem = () => {
-		const newItem = {
-			name  : itemNameRef.current.value,
-			price : parseInt(itemPriceRef.current.value)
-		};
-		console.log('New item:', newItem);
+		// const newItem = {
+		// 	name  : itemNameRef.current.value,
+		// 	price : parseInt(itemPriceRef.current.value)
+		// };
+		console.log('New item:', itemToAdd);
 		axios
-			.post('/items', newItem)
+			.post('/items', itemToAdd)
 			.then((response) => {
 				handleDisplayAllItems();
 			})
@@ -84,6 +87,18 @@ function App() {
 			.catch((err) => console.log(err));
 	};
 
+	const handleEditItem = (e) => {
+		e.preventDefault();
+
+		const fieldName = e.target.getAttribute("name");
+		const textValue = e.target.value;
+		
+		const newItem = {};
+		newItem[fieldName] = textValue;
+		setItemToAdd( { ...itemToAdd, ...newItem } );
+
+	};
+
 	const handleClickEditItemButton = (item) => {
 		const id = item.id;
 		const newEdit = { name: "Apple", price: 100};
@@ -108,8 +123,9 @@ function App() {
 			<Navbar />
 			<AddItemField 
 				handleClickAddItem={handleClickAddItem}
-				itemNameRef={itemNameRef}
-				itemPriceRef={itemPriceRef}
+				itemToAdd={itemToAdd}
+				setItemToAdd={setItemToAdd}
+				handleEditItem={handleEditItem}
 			/>
 			
 
