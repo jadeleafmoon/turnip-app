@@ -2,7 +2,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import './App.css';
 import { v4 as uuidv4 } from 'uuid';
+
+import Navbar from './components/Navbar';
+import AddItemField from './components/AddItemField';
 
 function App() {
 	// State
@@ -101,25 +105,18 @@ function App() {
 	// Render
 	return (
 		<div>
-			<h1 onClick={handleDisplayAllItems}>Turnip</h1>
-
-			<section>
-				<h2>Add an Item</h2>
-				<label>
-					<input type="text" name="item-name" ref={itemNameRef} />
-				</label>
-
-				<label>
-					<input type="text" name="item-price" ref={itemPriceRef} />
-				</label>
-
-				<button onClick={handleClickAddItem}>Add Item</button>
-			</section>
+			<Navbar />
+			<AddItemField 
+				handleClickAddItem={handleClickAddItem}
+				itemNameRef={itemNameRef}
+				itemPriceRef={itemPriceRef}
+			/>
+			
 
 			<section>
 				<h2>Submit Edit</h2>
 				{/* <label>
-					<input type="text" value={editName} onChange={e => setEditName(e.target.value)}/>
+					<input type="text" value={selectedItem.name} onChange={e => setSelectedItem.name(e.target.value)}/>
 				</label> */}
 
 				
