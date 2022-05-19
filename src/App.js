@@ -10,7 +10,7 @@ function App() {
 	const [ items, setItems ] = useState([]);
 	const [ selectedItem, setSelectedItem ] = useState('');
 	const [ currentView, setCurrentView ] = useState('all items');
-	const [ hello, setHello ] = useState("...blank...");
+	const [ hello, setHello ] = useState('...blank...');
 
 	const itemNameRef = useRef(null);
 	const itemPriceRef = useRef(null);
@@ -42,19 +42,38 @@ function App() {
 		setCurrentView('all items');
 	};
 
-	const handleAddItemClick = () => {
+	const handleClickAddItem = () => {
 		const newItem = {
 			name  : itemNameRef.current.value,
 			price : parseInt(itemPriceRef.current.value)
 		};
 		console.log('New item:', newItem);
+		axios
+			.post('/items', newItem)
+			.then((response) => {
+				handleDisplayAllItems();
+			})
+			.catch((err) => console.log(err));
 	};
+
+	const handleClickDeleteItem = (item) => {
+		const id = item.id;
+
+		axios
+		.delete(`/items/${id}`)
+		.then((response) => {
+			handleDisplayAllItems();
+		})
+		.catch((err) => console.log(err));
+
+		
+	};	
 
 	const handleHello = () => {
 		axios.get('/hello').then((response) => {
-			setHello(response.data);
+			console.log("Hello!");
 		});
-		// setHello("Hello");
+		setHello('Hello');
 	};
 
 	// Render
@@ -72,7 +91,7 @@ function App() {
 					<input type="text" name="item-price" ref={itemPriceRef} />
 				</label>
 
-				<button onClick={handleAddItemClick}>Add Item</button>
+				<button onClick={handleClickAddItem}>Add Item</button>
 			</section>
 
 			<section>
@@ -81,7 +100,7 @@ function App() {
 				<h3>{hello}</h3>
 			</section>
 
-			{/* <section>
+			<section>
 				<h2>Items</h2>
 				<button onClick={handleDisplayItemsClick}>Display All Items</button>
 
@@ -89,8 +108,10 @@ function App() {
 					<section>
 						{items.map((item) => {
 							return (
-								<div key={uuidv4()} onClick={() => handleClickItem(item)}>
-									{item.name} {item.price}
+								<div key={uuidv4()}>
+									<span>{item.id} {item.name} {item.price}</span>
+									<button onClick={() => handleClickItem(item)}>View</button>
+									<button onClick={() => handleClickDeleteItem(item)}>Delete</button>
 								</div>
 							);
 						})}
@@ -102,9 +123,9 @@ function App() {
 						</div>
 					</section>
 				)}
-			</section> */}
+			</section>
 		</div>
 	);
 }
-	
+
 export default App;
