@@ -8,6 +8,18 @@ app.use(express.json());
 // import knex
 const knex = require('./knex');
 
+app.get('/api', (req, res) => {
+	res.send("You've reached /api!");
+});
+
+app.get('/api/hello', (req, res) => {
+	res.send("You've reached /api/hello!");
+});
+
+app.get('/hello', (req, res) => {
+	res.send("You've reached /hello!");
+});
+
 app.get('/items', (req, res) => {
 	knex('items').returning('*').then((data) => {
 		// console.log('🔥 Server', data);
