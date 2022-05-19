@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from './components/Navbar';
 import AddItemField from './components/AddItemField';
+import HelloTest from './components/HelloTest';
+import AllItems from './components/AllItems';
 
 function App() {
 	// State
@@ -26,7 +28,7 @@ function App() {
 	// Hooks
 	useEffect(() => {
 		console.log('First render.');
-		// handleDisplayAllItems();
+		handleDisplayAllItems();
 	}, []);
 
 	// Handlers
@@ -46,8 +48,8 @@ function App() {
 	const handleDisplayAllItems = () => {
 		axios.get('/items').then((response) => {
 			setItems(response.data);
-		});
-		setCurrentView('all items');
+		}).then( () => setCurrentView('all items'));
+		
 	};
 
 	const handleClickAddItem = () => {
@@ -126,43 +128,17 @@ function App() {
 				itemToAdd={itemToAdd}
 				setItemToAdd={setItemToAdd}
 				handleEditItem={handleEditItem}
-			/>
-			
-
-			<section>
-				<h2>Submit Edit</h2>
-				{/* <label>
-					<input type="text" value={selectedItem.name} onChange={e => setSelectedItem.name(e.target.value)}/>
-				</label> */}
-
-				
-
-				<button onClick={handleClickEditItemButton}>Submit Edit</button>
-			</section>
-
-			<section>
-				<h2> Hello and Testing </h2>
-				<button onClick={handleHello}>/hello</button>
-				<h3>{hello}</h3>
-			</section>
+			/>			
 
 			<section>
 				<h2>Items</h2>
 				<button onClick={handleDisplayItemsClick}>Display All Items</button>
 
 				{currentView === 'all items' ? (
-					<section>
-						{items.map((item) => {
-							return (
-								<div key={uuidv4()}>
-									<span>
-										{item.id} {item.name} {item.price}
-									</span>
-									<button onClick={() => handleClickItem(item)}>View</button>
-								</div>
-							);
-						})}
-					</section>
+					<AllItems 
+						items={items}
+						handleClickItem={handleClickItem}
+					/>
 				) : (
 					<section>
 						<div>
