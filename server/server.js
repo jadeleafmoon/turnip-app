@@ -36,6 +36,23 @@ app.post('/items', (req, res) => {
 	});
 });
 
+app.patch('/items/:id', (req, res) => {
+	const id = parseInt(req.params.id);
+	const itemUpdates = req.body;
+
+	knex('items')
+		.where('id', '=', id)
+		.update(itemUpdates)
+		.returning('*')
+		.then((result) => {
+			res
+				.status(200)
+				.send(
+					`The product ${itemUpdates.name} with id ${id} has been updated`
+				);
+		});
+});
+
 app.delete('/items/:id', (req, res) => {
 	const id = parseInt(req.params.id);
 
