@@ -10,6 +10,7 @@ import AddItemField from './components/AddItemField';
 import HelloTest from './components/HelloTest';
 import AllItems from './components/AllItems';
 import SelectedItem from './components/SelectedItem';
+import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
 
 function App() {
 	// State
@@ -134,7 +135,7 @@ function App() {
 
 			<section>
 				<h2>Items</h2>
-				<button onClick={handleDisplayItemsClick}>Display All Items</button>
+				<ButtonDisplayAllItems handleDisplayItemsClick={handleDisplayItemsClick}/>
 
 				{currentView === 'all items' ? (
 					<AllItems items={items} handleClickItem={handleClickItem} />
