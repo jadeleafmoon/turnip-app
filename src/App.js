@@ -10,6 +10,7 @@ function App() {
 	const [ items, setItems ] = useState([]);
 	const [ selectedItem, setSelectedItem ] = useState('');
 	const [ currentView, setCurrentView ] = useState('all items');
+	const [ hello, setHello ] = useState("...blank...");
 
 	const itemNameRef = useRef(null);
 	const itemPriceRef = useRef(null);
@@ -17,7 +18,7 @@ function App() {
 	// Hooks
 	useEffect(() => {
 		console.log('First render.');
-		handleDisplayAllItems();
+		// handleDisplayAllItems();
 	}, []);
 
 	// Handlers
@@ -49,6 +50,13 @@ function App() {
 		console.log('New item:', newItem);
 	};
 
+	const handleHello = () => {
+		axios.get('/hello').then((response) => {
+			setHello(response.data);
+		});
+		// setHello("Hello");
+	};
+
 	// Render
 	return (
 		<div>
@@ -68,6 +76,12 @@ function App() {
 			</section>
 
 			<section>
+				<h2> Hello and Testing </h2>
+				<button onClick={handleHello}>/hello</button>
+				<h3>{hello}</h3>
+			</section>
+
+			{/* <section>
 				<h2>Items</h2>
 				<button onClick={handleDisplayItemsClick}>Display All Items</button>
 
@@ -88,9 +102,9 @@ function App() {
 						</div>
 					</section>
 				)}
-			</section>
+			</section> */}
 		</div>
 	);
 }
-
+	
 export default App;
