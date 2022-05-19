@@ -1,7 +1,8 @@
 // Express stuff
+require("dotenv").config();
 const express = require('express');
 const app = express();
-const PORT = 6060;
+const PORT = process.env.PORT || 6060;
 app.use(express.json());
 
 // import knex
