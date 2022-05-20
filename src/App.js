@@ -20,23 +20,27 @@ import ButtonMyProfile from './components/ButtonMyProfile';
 
 function App() {
 	// State
-	const [ color, setColor ] = useState('blue');
+	const [ currentUser, setCurrentUser ] = useState('Bob');
 	const [ items, setItems ] = useState([]);
 	const [ selectedItem, setSelectedItem ] = useState({
-		name  : '',
-		price : ''
+		name        : '',
+		price       : '',
+		ownmer      : currentUser,
+		description : ''
 	});
 	const [ displayAddItem, setDisplayAddItem ] = useState(false);
 	const [ editedItem, setEditedItem ] = useState('');
 	const [ isEditing, setIsEditing ] = useState(false);
 
 	const [ itemToAdd, setItemToAdd ] = useState({
-		name  : '',
-		price : ''
+		name        : '',
+		price       : '',
+		ownmer      : currentUser,
+		description : ''
 	});
 
-	const [ currentView, setCurrentView ] = useState('home');
 	const [ hello, setHello ] = useState('...blank...');
+	const [ currentView, setCurrentView ] = useState('home');
 
 	const inputNameRef = useRef(null);
 	const inputPriceRef = useRef(null);
@@ -81,26 +85,39 @@ function App() {
 	};
 
 	const handleClickAddItem = (item) => {
-		const newItem = item;
+		console.log('💜 Item to add:', item);
 		let isValidItem = checkValidItem(item);
 
 		if (isValidItem) {
 			axios
 				.post('/items', item)
 				.then((response) => {
-					setCurrentView('home');
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
-					setItemToAdd({ name: '', price: '', owner: '', description: '' });
 				})
+				.then(() => setCurrentView('home'))
+				.then(() =>
+					setItemToAdd({
+						name        : '',
+						price       : '',
+						owner       : currentUser,
+						description : ''
+					})
+				)
 				.catch((err) => console.log(err));
 		} else {
-			console.log('Fix your input!');
+			console.log('Fix your input!', item);
 		}
 	};
 
 	const handleClickCancelAddItem = () => {
-		setItemToAdd({ name: '', price: '', owner: '', description: '' });
+		setItemToAdd({
+			name        : '',
+			price       : '',
+			owner       : currentUser,
+
+			description : ''
+		});
 		setCurrentView('home');
 	};
 
@@ -141,13 +158,13 @@ function App() {
 				})
 				.catch((err) => console.log(err));
 		} else {
-			console.log('Fix your input!');
+			console.log('Fix your input!', newEdit);
 		}
 	};
 
-	const handleClickMyProfileButton = () => { 
-		setCurrentView("my profile");
-	 };
+	const handleClickMyProfileButton = () => {
+		setCurrentView('my profile');
+	};
 
 	// Render
 	return (
@@ -160,8 +177,8 @@ function App() {
 
 			{currentView === 'home' ? (
 				<section>
-					<ButtonMyProfile 
-						setCurrentView={setCurrentView} 
+					<ButtonMyProfile
+						setCurrentView={setCurrentView}
 						handleClickMyProfileButton={handleClickMyProfileButton}
 					/>
 					<ButtonAddItem setCurrentView={setCurrentView} />
@@ -184,6 +201,7 @@ function App() {
 						setDisplayAddItem={setDisplayAddItem}
 						setCurrentView={setCurrentView}
 						handleClickCancelAddItem={handleClickCancelAddItem}
+						currentUser={currentUser}
 					/>
 				</section>
 			) : null}

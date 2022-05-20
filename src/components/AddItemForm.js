@@ -7,11 +7,15 @@ const AddItemForm = (props) => {
 		itemToAdd,
 		setDisplayAddItem,
 		setCurrentView,
-		handleClickCancelAddItem
+		handleClickCancelAddItem,
+		currentUser
 	} = props;
 	return (
 		<section>
 			<h2>Add an Item</h2>
+			<div>
+				<p>Owner: {currentUser}</p>
+			</div>
 			<div>
 				<p>Item name:</p>
 				<input

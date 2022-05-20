@@ -1,8 +1,14 @@
 const checkValidItem = (item) => {
 	let isValid = true;
 
-	if (!checkNoBlankValues(item)) return false;
-	if (!checkValidPrice(item.price)) return false;
+	if (!checkNoBlankValues(item)) {
+		console.log('Fail checkNoBlankValues');
+		return false;
+	}
+	if (!checkValidPrice(item.price)) {
+		console.log('Fail checkValidPrice');
+		return false;
+	}
 
 	return isValid;
 };
