@@ -17,6 +17,7 @@ import EditItemForm from './components/EditItemForm';
 import MyInput from './components/MyInput';
 import ButtonAddItem from './components/ButtonAddItem';
 import ButtonMyProfile from './components/ButtonMyProfile';
+import AllItemsByOwner from './components/AllItemsByOwner';
 
 function App() {
 	// State
@@ -174,6 +175,7 @@ function App() {
 				setCurrentView={setCurrentView}
 				handleClickHomeButton={handleClickHomeButton}
 			/>
+			{<h2>User: {currentUser} </h2>}
 
 			{currentView === 'home' ? (
 				<section>
@@ -229,6 +231,7 @@ function App() {
 						selectedItem={selectedItem}
 						handleClickDeleteItemButton={handleClickDeleteItemButton}
 						handleClickEditItemButton={handleClickEditItemButton}
+						currentUser={currentUser}
 					/>
 				</section>
 			) : null}
@@ -237,7 +240,12 @@ function App() {
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
 					<ButtonAddItem setCurrentView={setCurrentView} />
-					<p>This is My Profile</p>
+					<h2>Welcome {currentUser}! These are your items.</h2>
+					<AllItemsByOwner
+						currentUser={currentUser}
+						items={items}
+						handleClickViewButton={handleClickViewButton}
+					/>
 				</section>
 			) : null}
 		</div>

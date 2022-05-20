@@ -4,7 +4,8 @@ const SelectedItem = (props) => {
 	const {
 		selectedItem,
 		handleClickDeleteItemButton,
-		handleClickEditItemButton
+		handleClickEditItemButton,
+		currentUser
 	} = props;
 	return (
 		<section>
@@ -16,12 +17,16 @@ const SelectedItem = (props) => {
 					<p>{selectedItem.owner}</p>
 					<p>{selectedItem.description}</p>
 				</span>
-				<button onClick={() => handleClickDeleteItemButton(selectedItem)}>
-					Delete
-				</button>
-				<button onClick={() => handleClickEditItemButton(selectedItem)}>
-					Edit
-				</button>
+				{selectedItem.owner === currentUser ? (
+					<div>
+						<button onClick={() => handleClickDeleteItemButton(selectedItem)}>
+							Delete
+						</button>
+						<button onClick={() => handleClickEditItemButton(selectedItem)}>
+							Edit
+						</button>
+					</div>
+				) : null}
 			</div>
 		</section>
 	);
