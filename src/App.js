@@ -72,7 +72,7 @@ function App() {
 			.get(`${dbURL}/items`)
 			.then((response) => {
 				setItems(response.data);
-				console.log(`🔥 using ${dbURL}/items`);
+				console.log(`🔥 Get using ${dbURL}/items`);
 			})
 			.then(() => setCurrentView('home'));
 	};
@@ -94,10 +94,11 @@ function App() {
 
 		if (isValidItem) {
 			axios
-				.post('/items', item)
+				.post(`${dbURL}/items`, item)
 				.then((response) => {
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
+					console.log(`🔥 POST with ${dbURL}`);
 				})
 				.then(() => setCurrentView('home'))
 				.then(() =>
@@ -129,9 +130,10 @@ function App() {
 		const id = item.id;
 
 		axios
-			.delete(`/items/${id}`)
+			.delete(`${dbURL}/items/${id}`)
 			.then((response) => {
 				handleDisplayAllItems();
+				console.log(`🔥 DELETE with ${dbURL}`);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -155,10 +157,11 @@ function App() {
 
 		if (isValidItem) {
 			axios
-				.patch(`/items/${id}`, newEdit)
+				.patch(`${dbURL}/items/${id}`, newEdit)
 				.then((response) => {
 					setIsEditing(false);
 					handleDisplayAllItems();
+					console.log(`🔥 PATCH with ${dbURL}`);
 				})
 				.catch((err) => console.log(err));
 		} else {
