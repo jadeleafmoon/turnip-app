@@ -1,12 +1,13 @@
 import React from 'react';
 
 const EditItemForm = (props) => {
-    const { selectedItem, } = props;
+    const { selectedItem, setIsEditing } = props;
 	return (
 		<div>
+            <h2>Edit Item</h2>
 			<input type="text" name="name" />
             <input type="text" name="price" />
-            <button>X</button>
+            <button onClick={() => setIsEditing(false)}>X</button>
             <button>Save</button>
 		</div>
 	);

@@ -41,13 +41,9 @@ function App() {
 		handleDisplayAllItems();
 	};
 
-	const handleClickItem = (item) => {
+	const handleClickViewButton = (item) => {
 		setSelectedItem(item);
 		setCurrentView('single item');
-	};
-
-	const handleClickTitle = (item) => {
-		handleDisplayAllItems();
 	};
 
 	const handleDisplayAllItems = () => {
@@ -59,12 +55,18 @@ function App() {
 			.then(() => setCurrentView('all items'));
 	};
 
+	const handleAddItem = (e) => {
+		e.preventDefault();
+
+		const fieldName = e.target.getAttribute('name');
+		const textValue = e.target.value;
+
+		const newItem = {};
+		newItem[fieldName] = textValue;
+		setItemToAdd({ ...itemToAdd, ...newItem });
+	};
+
 	const handleClickAddItem = () => {
-		// const newItem = {
-		// 	name  : itemNameRef.current.value,
-		// 	price : parseInt(itemPriceRef.current.value)
-		// };
-		console.log('New item:', itemToAdd);
 		axios
 			.post('/items', itemToAdd)
 			.then((response) => {
@@ -97,24 +99,6 @@ function App() {
 		// 	.catch((err) => console.log(err));
 	};
 
-	const handleAddItem = (e) => {
-		e.preventDefault();
-
-		const fieldName = e.target.getAttribute('name');
-		const textValue = e.target.value;
-
-		const newItem = {};
-		newItem[fieldName] = textValue;
-		setItemToAdd({ ...itemToAdd, ...newItem });
-	};
-
-	const handleHello = () => {
-		axios.get('/hello').then((response) => {
-			console.log('Hello!');
-		});
-		setHello('Hello');
-	};
-
 	// Render
 	return (
 		<div>
@@ -126,7 +110,7 @@ function App() {
 				handleAddItem={handleAddItem}
 			/>
 
-			{ isEditing ? <EditItemForm /> : <p>Not editing</p>}
+			{isEditing ? <EditItemForm setIsEditing={setIsEditing}/> : null}
 
 			<section>
 				<h2>Items</h2>
@@ -135,7 +119,7 @@ function App() {
 				/>
 
 				{currentView === 'all items' ? (
-					<AllItems items={items} handleClickItem={handleClickItem} />
+					<AllItems items={items} handleClickViewButton={handleClickViewButton} />
 				) : (
 					<SelectedItem
 						selectedItem={selectedItem}

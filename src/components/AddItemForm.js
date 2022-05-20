@@ -23,8 +23,9 @@ const AddItemForm = (props) => {
                 />
 			</label>
 
+            <button>X</button>
 			<button onClick={handleClickAddItem}>Add Item</button>
-            <h3>Name: { itemToAdd.name } Price:{ itemToAdd.price }</h3>
+            {/* <h3>Name: { itemToAdd.name } Price:{ itemToAdd.price }</h3> */}
         </section>
 	);
 };
