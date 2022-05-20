@@ -93,12 +93,12 @@ function App() {
 		let isValidItem = checkValidItem(item);
 
 		if (isValidItem) {
+			console.log(`🔥 POST with ${dbURL}`);
 			axios
 				.post(`${dbURL}/items`, item)
 				.then((response) => {
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
-					console.log(`🔥 POST with ${dbURL}`);
 				})
 				.then(() => setCurrentView('home'))
 				.then(() =>
@@ -128,12 +128,12 @@ function App() {
 
 	const handleClickDeleteItemButton = (item) => {
 		const id = item.id;
+		console.log(`🔥 DELETE with ${dbURL}`);
 
 		axios
 			.delete(`${dbURL}/items/${id}`)
 			.then((response) => {
 				handleDisplayAllItems();
-				console.log(`🔥 DELETE with ${dbURL}`);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -154,6 +154,7 @@ function App() {
 		};
 
 		let isValidItem = checkValidItem(newEdit);
+		console.log(`🔥 PATCH with ${dbURL}`);
 
 		if (isValidItem) {
 			axios
@@ -161,7 +162,6 @@ function App() {
 				.then((response) => {
 					setIsEditing(false);
 					handleDisplayAllItems();
-					console.log(`🔥 PATCH with ${dbURL}`);
 				})
 				.catch((err) => console.log(err));
 		} else {
@@ -173,11 +173,11 @@ function App() {
 		setCurrentView('my profile');
 	};
 
-	const handleTest = () => {
-		axios.get('https://jsonplaceholder.typicode.com/todos/2').then((data) => {
-			console.log('🔥 axios test', data.data);
-		});
-	};
+	// const handleTest = () => {
+	// 	axios.get('https://jsonplaceholder.typicode.com/todos/2').then((data) => {
+	// 		console.log('🔥 axios test', data.data);
+	// 	});
+	// };
 
 	// Render
 	return (
@@ -187,8 +187,6 @@ function App() {
 				setCurrentView={setCurrentView}
 				handleClickHomeButton={handleClickHomeButton}
 			/>
-
-			<button onClick={handleTest}>Test GET</button>
 
 			{<h2>User: {currentUser} </h2>}
 
