@@ -9,7 +9,7 @@ const AllItems = (props) => {
 				return (
 					<div key={uuidv4()}>
 						<span>
-							{ item.name } { item.price }
+							{ item.owner} - { item.name } - { item.price }
 						</span>
 						<button onClick={() => handleClickViewButton(item)}>View</button>
 					</div>
