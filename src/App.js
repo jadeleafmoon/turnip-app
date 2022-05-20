@@ -27,7 +27,7 @@ function App() {
 	const [ selectedItem, setSelectedItem ] = useState({
 		name        : '',
 		price       : '',
-		ownmer      : currentUser,
+		owner      : currentUser,
 		description : ''
 	});
 	const [ displayAddItem, setDisplayAddItem ] = useState(false);
@@ -37,7 +37,7 @@ function App() {
 	const [ itemToAdd, setItemToAdd ] = useState({
 		name        : '',
 		price       : '',
-		ownmer      : currentUser,
+		owner      : currentUser,
 		description : ''
 	});
 

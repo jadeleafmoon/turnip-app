@@ -5,7 +5,6 @@ const AllItemsByOwner = (props) => {
 	const { items, handleClickViewButton, currentUser } = props;
 	return (
 		<section>
-			{console.log('🔥 items', items)}
 			{items.filter((item) => item.owner === currentUser).map((item) => {
 				return (
 					<div key={uuidv4()}>
