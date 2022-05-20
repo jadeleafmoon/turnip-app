@@ -34,7 +34,7 @@ function App() {
 		price : ''
 	});
 
-	const [ currentView, setCurrentView ] = useState('all items');
+	const [ currentView, setCurrentView ] = useState('home');
 	const [ hello, setHello ] = useState('...blank...');
 
 	const inputNameRef = useRef(null);
@@ -63,7 +63,7 @@ function App() {
 			.then((response) => {
 				setItems(response.data);
 			})
-			.then(() => setCurrentView('all items'));
+			.then(() => setCurrentView('home'));
 	};
 
 	const handleAddItem = (e) => {
@@ -132,7 +132,16 @@ function App() {
 	return (
 		<div>
 			<Navbar />
-			{displayAddItem ? (
+			{currentView === 'home' ? (
+				<section>
+					<ButtonDisplayAllItems
+						handleDisplayItemsClick={handleDisplayItemsClick}
+					/>
+					<ButtonAddItem setDisplayAddItem={setDisplayAddItem} />
+				</section>
+			) : null}
+
+			{/* {displayAddItem ? (
 				<AddItemForm
 					handleAddItem={handleAddItem}
 					handleClickAddItem={handleClickAddItem}
@@ -142,6 +151,12 @@ function App() {
 				/>
 			) : (
 				<ButtonAddItem setDisplayAddItem={setDisplayAddItem} />
+			)} */}
+
+			{currentView === 'home' ? null : (
+				<ButtonDisplayAllItems
+					handleDisplayItemsClick={handleDisplayItemsClick}
+				/>
 			)}
 
 			{isEditing ? (
@@ -156,11 +171,8 @@ function App() {
 
 			<section>
 				<h2>Items</h2>
-				<ButtonDisplayAllItems
-					handleDisplayItemsClick={handleDisplayItemsClick}
-				/>
 
-				{currentView === 'all items' ? (
+				{currentView === 'home' ? (
 					<AllItems
 						items={items}
 						handleClickViewButton={handleClickViewButton}
