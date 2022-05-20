@@ -39,6 +39,7 @@ function App() {
 
 	const inputNameRef = useRef(null);
 	const inputPriceRef = useRef(null);
+	const inputDescriptionRef = useRef(null);
 
 	// Hooks
 	useEffect(() => {
@@ -124,7 +125,8 @@ function App() {
 
 		const newEdit = {
 			name  : inputNameRef.current.value,
-			price : inputPriceRef.current.value
+			price : inputPriceRef.current.value,
+			description: inputDescriptionRef.current.value
 		};
 
 		let isValidItem = checkValidItem(newEdit);
@@ -186,6 +188,7 @@ function App() {
 						handleClickSaveEditButton={handleClickSaveEditButton}
 						inputNameRef={inputNameRef}
 						inputPriceRef={inputPriceRef}
+						inputDescriptionRef={inputDescriptionRef}
 						setCurrentView={setCurrentView}
 					/>
 				</section>

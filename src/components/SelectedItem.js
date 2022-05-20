@@ -10,7 +10,11 @@ const SelectedItem = (props) => {
 		<section>
 			<div>
 				<span>
-					{selectedItem.id} {selectedItem.name} {selectedItem.price}
+					<p>{selectedItem.id}</p>
+					<p>{selectedItem.name}</p>
+					<p>{selectedItem.price}</p>
+					<p>{selectedItem.owner}</p>
+					<p>{selectedItem.description}</p>
 				</span>
 				<button onClick={() => handleClickDeleteItemButton(selectedItem)}>
 					Delete
