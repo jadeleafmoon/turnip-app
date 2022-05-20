@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ButtonAddItem = (props) => {
-    const { setDisplayAddItem, setCurrentView } = props;
+    const { setDisplayAddItem, setCurrentView, handleClickCancelAddItem } = props;
 
 	return (
 		<div>

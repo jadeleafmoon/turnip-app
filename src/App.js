@@ -97,6 +97,11 @@ function App() {
 		}
 	};
 
+	const handleClickCancelAddItem = () => {
+		setItemToAdd({ name: '', price: '' });
+		setCurrentView('home');
+	};
+
 	const handleClickDeleteItemButton = (item) => {
 		const id = item.id;
 
@@ -116,20 +121,25 @@ function App() {
 
 	const handleClickSaveEditButton = (item) => {
 		const id = item.id;
-		// console.log('🔥 Save Button: Id', selectedItem.name);
-		// console.log("💜 Save Button", inputNameRef.current.value, inputPriceRef.current.value);
+
 		const newEdit = {
 			name  : inputNameRef.current.value,
 			price : inputPriceRef.current.value
 		};
 
-		axios
-			.patch(`/items/${id}`, newEdit)
-			.then((response) => {
-				setIsEditing(false);
-				handleDisplayAllItems();
-			})
-			.catch((err) => console.log(err));
+		let isValidItem = checkValidItem(newEdit);
+
+		if (isValidItem) {
+			axios
+				.patch(`/items/${id}`, newEdit)
+				.then((response) => {
+					setIsEditing(false);
+					handleDisplayAllItems();
+				})
+				.catch((err) => console.log(err));
+		} else {
+			console.log('Fix your input!');
+		}
 	};
 
 	// Render
@@ -162,6 +172,7 @@ function App() {
 						setItemToAdd={setItemToAdd}
 						setDisplayAddItem={setDisplayAddItem}
 						setCurrentView={setCurrentView}
+						handleClickCancelAddItem={handleClickCancelAddItem}
 					/>
 				</section>
 			) : null}

@@ -6,7 +6,8 @@ const AddItemForm = (props) => {
 		handleAddItem,
 		itemToAdd,
 		setDisplayAddItem,
-		setCurrentView
+		setCurrentView,
+        handleClickCancelAddItem
 	} = props;
 	return (
 		<section>
@@ -31,7 +32,7 @@ const AddItemForm = (props) => {
 				/>
 			</label>
 
-			<button onClick={() => setCurrentView('home')}>X</button>
+			<button onClick={handleClickCancelAddItem}>X</button>
 			<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
 		</section>
 	);
