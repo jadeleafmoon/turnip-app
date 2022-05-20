@@ -16,6 +16,7 @@ import InputReadOnly from './components/InputReadOnly';
 import EditItemForm from './components/EditItemForm';
 import MyInput from './components/MyInput';
 import ButtonAddItem from './components/ButtonAddItem';
+import ButtonMyProfile from './components/ButtonMyProfile';
 
 function App() {
 	// State
@@ -90,7 +91,7 @@ function App() {
 					setCurrentView('home');
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
-					setItemToAdd({ name: '', price: '', owner: '', description:'' });
+					setItemToAdd({ name: '', price: '', owner: '', description: '' });
 				})
 				.catch((err) => console.log(err));
 		} else {
@@ -99,7 +100,7 @@ function App() {
 	};
 
 	const handleClickCancelAddItem = () => {
-		setItemToAdd({ name: '', price: '', owner: '', description:'' });
+		setItemToAdd({ name: '', price: '', owner: '', description: '' });
 		setCurrentView('home');
 	};
 
@@ -124,9 +125,9 @@ function App() {
 		const id = item.id;
 
 		const newEdit = {
-			name  : inputNameRef.current.value,
-			price : inputPriceRef.current.value,
-			description: inputDescriptionRef.current.value
+			name        : inputNameRef.current.value,
+			price       : inputPriceRef.current.value,
+			description : inputDescriptionRef.current.value
 		};
 
 		let isValidItem = checkValidItem(newEdit);
@@ -144,6 +145,10 @@ function App() {
 		}
 	};
 
+	const handleClickMyProfileButton = () => { 
+		setCurrentView("my profile");
+	 };
+
 	// Render
 	return (
 		<div>
@@ -155,6 +160,10 @@ function App() {
 
 			{currentView === 'home' ? (
 				<section>
+					<ButtonMyProfile 
+						setCurrentView={setCurrentView} 
+						handleClickMyProfileButton={handleClickMyProfileButton}
+					/>
 					<ButtonAddItem setCurrentView={setCurrentView} />
 					<h2>All Items</h2>
 					<AllItems
@@ -203,6 +212,14 @@ function App() {
 						handleClickDeleteItemButton={handleClickDeleteItemButton}
 						handleClickEditItemButton={handleClickEditItemButton}
 					/>
+				</section>
+			) : null}
+
+			{currentView === 'my profile' ? (
+				<section>
+					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<ButtonAddItem setCurrentView={setCurrentView} />
+					<p>This is My Profile</p>
 				</section>
 			) : null}
 		</div>
