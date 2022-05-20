@@ -40,8 +40,7 @@ function App() {
 		owner      : currentUser,
 		description : ''
 	});
-
-	const [ hello, setHello ] = useState('...blank...');
+	
 	const [ currentView, setCurrentView ] = useState('home');
 
 	const inputNameRef = useRef(null);
