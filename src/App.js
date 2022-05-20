@@ -20,7 +20,7 @@ import ButtonMyProfile from './components/ButtonMyProfile';
 import AllItemsByOwner from './components/AllItemsByOwner';
 import ButtonSelectUser from './components/ButtonSelectUser';
 
-const dbURL = "https://turnip-api-2.herokuapp.com";
+const dbURL = 'http://turnip-api-2.herokuapp.com';
 
 function App() {
 	// State
@@ -29,7 +29,7 @@ function App() {
 	const [ selectedItem, setSelectedItem ] = useState({
 		name        : '',
 		price       : '',
-		owner      : currentUser,
+		owner       : currentUser,
 		description : ''
 	});
 	const [ displayAddItem, setDisplayAddItem ] = useState(false);
@@ -39,10 +39,10 @@ function App() {
 	const [ itemToAdd, setItemToAdd ] = useState({
 		name        : '',
 		price       : '',
-		owner      : currentUser,
+		owner       : currentUser,
 		description : ''
 	});
-	
+
 	const [ currentView, setCurrentView ] = useState('home');
 
 	const inputNameRef = useRef(null);
@@ -72,7 +72,7 @@ function App() {
 			.get(`${dbURL}/items`)
 			.then((response) => {
 				setItems(response.data);
-				console.log(`🔥 using ${dbURL}`);
+				// console.log(`🔥 using ${dbURL}`);
 			})
 			.then(() => setCurrentView('home'));
 	};
@@ -170,6 +170,12 @@ function App() {
 		setCurrentView('my profile');
 	};
 
+	const handleTest = () => {
+		axios.get('https://jsonplaceholder.typicode.com/todos/2').then((data) => {
+			console.log('🔥 axios test', data.data);
+		});
+	};
+
 	// Render
 	return (
 		<div>
@@ -178,6 +184,9 @@ function App() {
 				setCurrentView={setCurrentView}
 				handleClickHomeButton={handleClickHomeButton}
 			/>
+
+			<button onClick={handleTest}>Test GET</button>
+
 			{<h2>User: {currentUser} </h2>}
 
 			{currentView === 'home' ? (
@@ -187,7 +196,7 @@ function App() {
 						handleClickMyProfileButton={handleClickMyProfileButton}
 					/>
 					<ButtonAddItem setCurrentView={setCurrentView} />
-					<ButtonSelectUser setCurrentUser={setCurrentUser}/>
+					<ButtonSelectUser setCurrentUser={setCurrentUser} />
 					<h2>All Items</h2>
 					<AllItems
 						items={items}
