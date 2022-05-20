@@ -5,7 +5,7 @@ const ButtonAddItem = (props) => {
 
 	return (
 		<div>
-			<button onClick={() => setCurrentView("add item")}>Nav Add Item</button>
+			<button onClick={() => setCurrentView("add item")}>Sell Item</button>
 		</div>
 	);
 };

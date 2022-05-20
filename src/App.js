@@ -168,20 +168,21 @@ function App() {
 			{currentView === 'edit item' ? (
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-					<p>Editing Item</p>
 					<EditItemForm
 						setIsEditing={setIsEditing}
 						selectedItem={selectedItem}
 						handleClickSaveEditButton={handleClickSaveEditButton}
 						inputNameRef={inputNameRef}
 						inputPriceRef={inputPriceRef}
+						setCurrentView={setCurrentView}
 					/>
 				</section>
 			) : null}
 
 			{currentView === 'single item' ? (
 				<section>
-					<p>I see a single item</p>
+					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<h2>Single Item</h2>
 					<SelectedItem
 						selectedItem={selectedItem}
 						handleClickDeleteItemButton={handleClickDeleteItemButton}

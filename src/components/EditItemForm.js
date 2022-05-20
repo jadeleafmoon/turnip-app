@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EditItemForm = (props) => {
-    const { selectedItem, setIsEditing, handleClickSaveEditButton, inputNameRef, inputPriceRef } = props;
+    const { selectedItem, setIsEditing, handleClickSaveEditButton, inputNameRef, inputPriceRef, setCurrentView } = props;
 	return (
 		<div>
             <h2>Edit Item</h2>
@@ -17,7 +17,7 @@ const EditItemForm = (props) => {
                 defaultValue={selectedItem.price}
                 ref={inputPriceRef}
             />
-            <button onClick={() => setIsEditing(false)}>X</button>
+            <button onClick={() => setCurrentView("home")}>X</button>
             <button onClick={() => handleClickSaveEditButton(selectedItem)}>Save</button>
 		</div>
 	);
