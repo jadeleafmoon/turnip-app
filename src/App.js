@@ -6,11 +6,12 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import Navbar from './components/Navbar';
-import AddItemField from './components/AddItemField';
+import AddItemForm from './components/AddItemForm';
 import HelloTest from './components/HelloTest';
 import AllItems from './components/AllItems';
 import SelectedItem from './components/SelectedItem';
 import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
+import InputReadOnly from './components/InputReadOnly';
 
 function App() {
 	// State
@@ -18,6 +19,7 @@ function App() {
 	const [ items, setItems ] = useState([]);
 	const [ selectedItem, setSelectedItem ] = useState('');
 	const [ editedItem, setEditedItem ] = useState('');
+	const [ isEditing, setIsEditing ] = useState(false);
 
 	const [ itemToAdd, setItemToAdd ] = useState({
 		name  : '',
@@ -70,7 +72,7 @@ function App() {
 			.catch((err) => console.log(err));
 	};
 
-	const handleClickDeleteItem = (item) => {
+	const handleClickDeleteItemButton = (item) => {
 		const id = item.id;
 
 		axios
@@ -81,7 +83,7 @@ function App() {
 			.catch((err) => console.log(err));
 	};
 
-	const handleClickEditItem = (item) => {
+	const handleClickEditItemButton = (item) => {
 		const id = item.id;
 		setEditedItem(item);
 		// const newEdit = { name: "Apple", price: 100};
@@ -104,17 +106,6 @@ function App() {
 		setItemToAdd({ ...itemToAdd, ...newItem });
 	};
 
-	const handleClickEditItemButton = (item) => {
-		const id = item.id;
-		const newEdit = { name: 'Apple', price: 100 };
-		axios
-			.patch(`/items/${id}`, newEdit)
-			.then((response) => {
-				handleDisplayAllItems();
-			})
-			.catch((err) => console.log(err));
-	};
-
 	const handleHello = () => {
 		axios.get('/hello').then((response) => {
 			console.log('Hello!');
@@ -126,24 +117,28 @@ function App() {
 	return (
 		<div>
 			<Navbar />
-			<AddItemField
+			<AddItemForm
 				handleClickAddItem={handleClickAddItem}
 				itemToAdd={itemToAdd}
 				setItemToAdd={setItemToAdd}
 				handleEditItem={handleEditItem}
 			/>
 
+			{ isEditing ? <p>Editing</p> : <p>Not editing</p>}
+
 			<section>
 				<h2>Items</h2>
-				<ButtonDisplayAllItems handleDisplayItemsClick={handleDisplayItemsClick}/>
+				<ButtonDisplayAllItems
+					handleDisplayItemsClick={handleDisplayItemsClick}
+				/>
 
 				{currentView === 'all items' ? (
 					<AllItems items={items} handleClickItem={handleClickItem} />
 				) : (
 					<SelectedItem
 						selectedItem={selectedItem}
-						handleClickDeleteItem={handleClickDeleteItem}
-						handleClickEditItem={handleClickEditItem}
+						handleClickDeleteItemButton={handleClickDeleteItemButton}
+						handleClickEditItemButton={handleClickEditItemButton}
 					/>
 				)}
 			</section>

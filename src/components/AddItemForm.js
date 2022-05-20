@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddItemField = (props) => {
+const AddItemForm = (props) => {
 	const { handleClickAddItem, handleEditItem, itemToAdd, setItemToAdd } = props;
 	return (
 		<section>
@@ -29,4 +29,4 @@ const AddItemField = (props) => {
 	);
 };
 
-export default AddItemField;
+export default AddItemForm;
