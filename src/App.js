@@ -69,9 +69,10 @@ function App() {
 
 	const handleDisplayAllItems = () => {
 		axios
-			.get('/items')
+			.get(`${dbURL}/items`)
 			.then((response) => {
 				setItems(response.data);
+				console.log(`🔥 using ${dbURL}`);
 			})
 			.then(() => setCurrentView('home'));
 	};
