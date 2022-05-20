@@ -154,7 +154,7 @@ function App() {
 			{currentView === 'home' ? (
 				<section>
 					<ButtonAddItem setCurrentView={setCurrentView} />
-					<h2>Items (Good)</h2>
+					<h2>All Items</h2>
 					<AllItems
 						items={items}
 						handleClickViewButton={handleClickViewButton}
