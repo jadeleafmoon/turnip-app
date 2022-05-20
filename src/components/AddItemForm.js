@@ -7,12 +7,13 @@ const AddItemForm = (props) => {
 		itemToAdd,
 		setDisplayAddItem,
 		setCurrentView,
-        handleClickCancelAddItem
+		handleClickCancelAddItem
 	} = props;
 	return (
 		<section>
 			<h2>Add an Item</h2>
-			<label>
+			<div>
+				<p>Item name:</p>
 				<input
 					type="text"
 					name="name"
@@ -20,9 +21,10 @@ const AddItemForm = (props) => {
 					onChange={(e) => handleAddItem(e)}
 					required
 				/>
-			</label>
+			</div>
 
-			<label>
+			<div>
+				<p>Price:</p>
 				<input
 					type="text"
 					name="price"
@@ -30,7 +32,17 @@ const AddItemForm = (props) => {
 					onChange={(e) => handleAddItem(e)}
 					required
 				/>
-			</label>
+			</div>
+
+			<div>
+				<p>Description:</p>
+				<textarea
+					name="description"
+					value={itemToAdd.description}
+					onChange={(e) => handleAddItem(e)}
+					required
+				/>
+			</div>
 
 			<button onClick={handleClickCancelAddItem}>X</button>
 			<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>

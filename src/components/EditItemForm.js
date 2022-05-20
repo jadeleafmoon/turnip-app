@@ -14,6 +14,7 @@ const EditItemForm = (props) => {
 		<div>
 			<h2>Edit Item</h2>
 			<div>
+                <p>Item name:</p>
 				<input
 					type="text"
 					name="name"
@@ -22,6 +23,7 @@ const EditItemForm = (props) => {
 				/>
 			</div>
 			<div>
+                <p>Price:</p>
 				<input
 					type="text"
 					name="price"
@@ -30,6 +32,7 @@ const EditItemForm = (props) => {
 				/>
 			</div>
 			<div>
+                <p>Description:</p>
 				<textarea
 					name="description"
 					defaultValue={selectedItem.description}
