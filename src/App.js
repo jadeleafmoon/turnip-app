@@ -90,13 +90,18 @@ function App() {
 	};
 
 	const handleClickAddItem = (item) => {
-		console.log('💜 Item to add:', item);
+		
+		
+
+		const newItem = { ...item, owner: currentUser }
+		console.log('💜 Item to add:', newItem);
+
 		let isValidItem = checkValidItem(item);
 
 		if (isValidItem) {
 			console.log(`🔥 POST with ${dbURL}`);
 			axios
-				.post(`${dbURL}/items`, item)
+				.post(`${dbURL}/items`, newItem)
 				.then((response) => {
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
