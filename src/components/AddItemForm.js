@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddItemForm = (props) => {
-	const { handleClickAddItem, handleEditItem, itemToAdd, setItemToAdd } = props;
+	const { handleClickAddItem, handleAddItem, itemToAdd } = props;
 	return (
 		<section>
 			<h2>Add an Item</h2>
@@ -10,7 +10,7 @@ const AddItemForm = (props) => {
                     type="text" 
                     name="name"
                     value={itemToAdd.name} 
-                    onChange={(e) => handleEditItem(e)} 
+                    onChange={(e) => handleAddItem(e)} 
                 />
 			</label>
 
@@ -19,7 +19,7 @@ const AddItemForm = (props) => {
                     type="text" 
                     name="price"
                     value={itemToAdd.price} 
-                    onChange={(e) => handleEditItem(e)} 
+                    onChange={(e) => handleAddItem(e)} 
                 />
 			</label>
 

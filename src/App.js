@@ -12,6 +12,7 @@ import AllItems from './components/AllItems';
 import SelectedItem from './components/SelectedItem';
 import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
 import InputReadOnly from './components/InputReadOnly';
+import EditItemForm from './components/EditItemForm';
 
 function App() {
 	// State
@@ -85,17 +86,18 @@ function App() {
 
 	const handleClickEditItemButton = (item) => {
 		const id = item.id;
+		setIsEditing(true);
 		setEditedItem(item);
 		// const newEdit = { name: "Apple", price: 100};
-		axios
-			.patch(`/items/${id}`, newEdit)
-			.then((response) => {
-				handleDisplayAllItems();
-			})
-			.catch((err) => console.log(err));
+		// axios
+		// 	.patch(`/items/${id}`, newEdit)
+		// 	.then((response) => {
+		// 		handleDisplayAllItems();
+		// 	})
+		// 	.catch((err) => console.log(err));
 	};
 
-	const handleEditItem = (e) => {
+	const handleAddItem = (e) => {
 		e.preventDefault();
 
 		const fieldName = e.target.getAttribute('name');
@@ -121,10 +123,10 @@ function App() {
 				handleClickAddItem={handleClickAddItem}
 				itemToAdd={itemToAdd}
 				setItemToAdd={setItemToAdd}
-				handleEditItem={handleEditItem}
+				handleAddItem={handleAddItem}
 			/>
 
-			{ isEditing ? <p>Editing</p> : <p>Not editing</p>}
+			{ isEditing ? <EditItemForm /> : <p>Not editing</p>}
 
 			<section>
 				<h2>Items</h2>
