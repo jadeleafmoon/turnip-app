@@ -111,7 +111,7 @@ function App() {
 	// Edit
 	const handleClickEditItemButton = () => {
 		setIsEditing(true);
-		setCurrentView("edit item");
+		setCurrentView('edit item');
 	};
 
 	const handleClickSaveEditButton = (item) => {
@@ -179,6 +179,17 @@ function App() {
 				</section>
 			) : null}
 
+			{currentView === 'single item' ? (
+				<section>
+					<p>I see a single item</p>
+					<SelectedItem
+						selectedItem={selectedItem}
+						handleClickDeleteItemButton={handleClickDeleteItemButton}
+						handleClickEditItemButton={handleClickEditItemButton}
+					/>
+				</section>
+			) : null}
+
 			{/* {isEditing ? (
 				<EditItemForm
 					setIsEditing={setIsEditing}
@@ -189,7 +200,7 @@ function App() {
 				/>
 			) : null} */}
 
-			<section>
+			{/* <section>
 				{currentView === 'home' ? (
 					<section>
 						<h2>Items (Delete)</h2>
@@ -205,7 +216,7 @@ function App() {
 						handleClickEditItemButton={handleClickEditItemButton}
 					/>
 				)}
-			</section>
+			</section> */}
 		</div>
 	);
 }
