@@ -18,6 +18,7 @@ import MyInput from './components/MyInput';
 import ButtonAddItem from './components/ButtonAddItem';
 import ButtonMyProfile from './components/ButtonMyProfile';
 import AllItemsByOwner from './components/AllItemsByOwner';
+import ButtonSelectUser from './components/ButtonSelectUser';
 
 function App() {
 	// State
@@ -184,6 +185,7 @@ function App() {
 						handleClickMyProfileButton={handleClickMyProfileButton}
 					/>
 					<ButtonAddItem setCurrentView={setCurrentView} />
+					<ButtonSelectUser setCurrentUser={setCurrentUser}/>
 					<h2>All Items</h2>
 					<AllItems
 						items={items}
