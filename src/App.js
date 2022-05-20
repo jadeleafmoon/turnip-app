@@ -13,12 +13,17 @@ import SelectedItem from './components/SelectedItem';
 import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
 import InputReadOnly from './components/InputReadOnly';
 import EditItemForm from './components/EditItemForm';
+import MyInput from './components/MyInput';
+
 
 function App() {
 	// State
 	const [ color, setColor ] = useState('blue');
 	const [ items, setItems ] = useState([]);
-	const [ selectedItem, setSelectedItem ] = useState('');
+	const [ selectedItem, setSelectedItem ] = useState( {
+		name: "",
+		price: ""
+	});
 	const [ editedItem, setEditedItem ] = useState('');
 	const [ isEditing, setIsEditing ] = useState(false);
 
@@ -30,6 +35,9 @@ function App() {
 	const [ currentView, setCurrentView ] = useState('all items');
 	const [ hello, setHello ] = useState('...blank...');
 
+	const inputNameRef = useRef(null);
+	const inputPriceRef = useRef(null);
+
 	// Hooks
 	useEffect(() => {
 		console.log('First render.');
@@ -39,6 +47,7 @@ function App() {
 	// Handlers
 	const handleDisplayItemsClick = () => {
 		handleDisplayAllItems();
+		setIsEditing(false);
 	};
 
 	const handleClickViewButton = (item) => {
@@ -86,17 +95,29 @@ function App() {
 			.catch((err) => console.log(err));
 	};
 
-	const handleClickEditItemButton = (item) => {
-		const id = item.id;
+	// Edit
+	const handleClickEditItemButton = () => {
 		setIsEditing(true);
-		setEditedItem(item);
-		// const newEdit = { name: "Apple", price: 100};
-		// axios
-		// 	.patch(`/items/${id}`, newEdit)
-		// 	.then((response) => {
-		// 		handleDisplayAllItems();
-		// 	})
-		// 	.catch((err) => console.log(err));
+		
+	};
+
+	const handleClickSaveEditButton = (item) => {
+		const id = item.id;
+		// console.log('🔥 Save Button: Id', selectedItem.name);
+		// console.log("💜 Save Button", inputNameRef.current.value, inputPriceRef.current.value);
+		const newEdit = { 
+			name: inputNameRef.current.value, 
+			price: inputPriceRef.current.value
+		};
+
+
+		axios
+			.patch(`/items/${id}`, newEdit)
+			.then((response) => {
+				setIsEditing(false);
+				handleDisplayAllItems();
+			})
+			.catch((err) => console.log(err));
 	};
 
 	// Render
@@ -110,7 +131,15 @@ function App() {
 				handleAddItem={handleAddItem}
 			/>
 
-			{isEditing ? <EditItemForm setIsEditing={setIsEditing}/> : null}
+			{isEditing ? (
+				<EditItemForm
+					setIsEditing={setIsEditing}
+					selectedItem={selectedItem}
+					handleClickSaveEditButton={handleClickSaveEditButton}
+					inputNameRef={inputNameRef}
+					inputPriceRef={inputPriceRef}
+				/>
+			) : null}
 
 			<section>
 				<h2>Items</h2>
@@ -119,7 +148,10 @@ function App() {
 				/>
 
 				{currentView === 'all items' ? (
-					<AllItems items={items} handleClickViewButton={handleClickViewButton} />
+					<AllItems
+						items={items}
+						handleClickViewButton={handleClickViewButton}
+					/>
 				) : (
 					<SelectedItem
 						selectedItem={selectedItem}
@@ -128,6 +160,8 @@ function App() {
 					/>
 				)}
 			</section>
+
+			
 		</div>
 	);
 }
