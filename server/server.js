@@ -21,9 +21,10 @@ app.get('/hello', (req, res) => {
 });
 
 app.get('/items', (req, res) => {
-	knex('items').returning('*').then((data) => {
-		// console.log('🔥 Server', data);
+	knex('items').orderBy('id', 'desc').returning('*').then((data) => {
+		console.log("💜 data", data);
 		res.send(data);
+		
 	});
 });
 
@@ -47,9 +48,7 @@ app.patch('/items/:id', (req, res) => {
 		.then((result) => {
 			res
 				.status(200)
-				.send(
-					`The product ${itemUpdates.name} with id ${id} has been updated`
-				);
+				.send(`The product ${itemUpdates.name} with id ${id} has been updated`);
 		});
 });
 
