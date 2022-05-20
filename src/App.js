@@ -20,6 +20,8 @@ import ButtonMyProfile from './components/ButtonMyProfile';
 import AllItemsByOwner from './components/AllItemsByOwner';
 import ButtonSelectUser from './components/ButtonSelectUser';
 
+const dbURL = "https://turnip-api-2.herokuapp.com";
+
 function App() {
 	// State
 	const [ currentUser, setCurrentUser ] = useState('Bob');
