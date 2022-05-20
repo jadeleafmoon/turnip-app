@@ -161,6 +161,7 @@ function App() {
 						itemToAdd={itemToAdd}
 						setItemToAdd={setItemToAdd}
 						setDisplayAddItem={setDisplayAddItem}
+						setCurrentView={setCurrentView}
 					/>
 				</section>
 			) : null}
@@ -190,34 +191,6 @@ function App() {
 					/>
 				</section>
 			) : null}
-
-			{/* {isEditing ? (
-				<EditItemForm
-					setIsEditing={setIsEditing}
-					selectedItem={selectedItem}
-					handleClickSaveEditButton={handleClickSaveEditButton}
-					inputNameRef={inputNameRef}
-					inputPriceRef={inputPriceRef}
-				/>
-			) : null} */}
-
-			{/* <section>
-				{currentView === 'home' ? (
-					<section>
-						<h2>Items (Delete)</h2>
-						<AllItems
-							items={items}
-							handleClickViewButton={handleClickViewButton}
-						/>
-					</section>
-				) : (
-					<SelectedItem
-						selectedItem={selectedItem}
-						handleClickDeleteItemButton={handleClickDeleteItemButton}
-						handleClickEditItemButton={handleClickEditItemButton}
-					/>
-				)}
-			</section> */}
 		</div>
 	);
 }
