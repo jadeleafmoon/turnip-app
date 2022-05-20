@@ -20,7 +20,7 @@ import ButtonMyProfile from './components/ButtonMyProfile';
 import AllItemsByOwner from './components/AllItemsByOwner';
 import ButtonSelectUser from './components/ButtonSelectUser';
 
-const dbURL = 'http://turnip-api-2.herokuapp.com';
+const dbURL = 'https://turnip-api-2.herokuapp.com';
 
 function App() {
 	// State
@@ -72,7 +72,7 @@ function App() {
 			.get(`${dbURL}/items`)
 			.then((response) => {
 				setItems(response.data);
-				// console.log(`🔥 using ${dbURL}`);
+				console.log(`🔥 using ${dbURL}/items`);
 			})
 			.then(() => setCurrentView('home'));
 	};
