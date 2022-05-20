@@ -1,7 +1,11 @@
 import React from 'react';
 
-const SelectedItem = ( props ) => {
-    const { selectedItem, handleClickDeleteItemButton, handleClickEditItemButton } = props;
+const SelectedItem = (props) => {
+	const {
+		selectedItem,
+		handleClickDeleteItemButton,
+		handleClickEditItemButton
+	} = props;
 	return (
 		<section>
 			<div>
@@ -11,7 +15,9 @@ const SelectedItem = ( props ) => {
 				<button onClick={() => handleClickDeleteItemButton(selectedItem)}>
 					Delete
 				</button>
-				<button onClick={() => handleClickEditItemButton(selectedItem)}>Edit</button>
+				<button onClick={() => handleClickEditItemButton(selectedItem)}>
+					Edit
+				</button>
 			</div>
 		</section>
 	);

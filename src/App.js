@@ -11,7 +11,7 @@ import AddItemForm from './components/AddItemForm';
 import HelloTest from './components/HelloTest';
 import AllItems from './components/AllItems';
 import SelectedItem from './components/SelectedItem';
-import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
+import ButtonHome from './components/ButtonHome';
 import InputReadOnly from './components/InputReadOnly';
 import EditItemForm from './components/EditItemForm';
 import MyInput from './components/MyInput';
@@ -47,9 +47,10 @@ function App() {
 	}, []);
 
 	// Handlers
-	const handleDisplayItemsClick = () => {
+	const handleClickHomeButton = () => {
 		handleDisplayAllItems();
-		setIsEditing(false);
+		// setCurrentView("home");
+		// setIsEditing(false);
 	};
 
 	const handleClickViewButton = (item) => {
@@ -85,8 +86,10 @@ function App() {
 			axios
 				.post('/items', item)
 				.then((response) => {
-					setDisplayAddItem(false);
+					setCurrentView('home');
+					// setDisplayAddItem(false);
 					handleDisplayAllItems();
+					setItemToAdd({ name: '', price: '' });
 				})
 				.catch((err) => console.log(err));
 		} else {
@@ -108,6 +111,7 @@ function App() {
 	// Edit
 	const handleClickEditItemButton = () => {
 		setIsEditing(true);
+		setCurrentView("edit item");
 	};
 
 	const handleClickSaveEditButton = (item) => {
@@ -131,35 +135,51 @@ function App() {
 	// Render
 	return (
 		<div>
-			<Navbar />
+			<Navbar
+				currentView={currentView}
+				setCurrentView={setCurrentView}
+				handleClickHomeButton={handleClickHomeButton}
+			/>
+
 			{currentView === 'home' ? (
 				<section>
-					<ButtonDisplayAllItems
-						handleDisplayItemsClick={handleDisplayItemsClick}
+					<ButtonAddItem setCurrentView={setCurrentView} />
+					<h2>Items (Good)</h2>
+					<AllItems
+						items={items}
+						handleClickViewButton={handleClickViewButton}
 					/>
-					<ButtonAddItem setDisplayAddItem={setDisplayAddItem} />
 				</section>
 			) : null}
 
-			{/* {displayAddItem ? (
-				<AddItemForm
-					handleAddItem={handleAddItem}
-					handleClickAddItem={handleClickAddItem}
-					itemToAdd={itemToAdd}
-					setItemToAdd={setItemToAdd}
-					setDisplayAddItem={setDisplayAddItem}
-				/>
-			) : (
-				<ButtonAddItem setDisplayAddItem={setDisplayAddItem} />
-			)} */}
+			{currentView === 'add item' ? (
+				<section>
+					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<AddItemForm
+						handleAddItem={handleAddItem}
+						handleClickAddItem={handleClickAddItem}
+						itemToAdd={itemToAdd}
+						setItemToAdd={setItemToAdd}
+						setDisplayAddItem={setDisplayAddItem}
+					/>
+				</section>
+			) : null}
 
-			{currentView === 'home' ? null : (
-				<ButtonDisplayAllItems
-					handleDisplayItemsClick={handleDisplayItemsClick}
-				/>
-			)}
+			{currentView === 'edit item' ? (
+				<section>
+					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<p>Editing Item</p>
+					<EditItemForm
+						setIsEditing={setIsEditing}
+						selectedItem={selectedItem}
+						handleClickSaveEditButton={handleClickSaveEditButton}
+						inputNameRef={inputNameRef}
+						inputPriceRef={inputPriceRef}
+					/>
+				</section>
+			) : null}
 
-			{isEditing ? (
+			{/* {isEditing ? (
 				<EditItemForm
 					setIsEditing={setIsEditing}
 					selectedItem={selectedItem}
@@ -167,16 +187,17 @@ function App() {
 					inputNameRef={inputNameRef}
 					inputPriceRef={inputPriceRef}
 				/>
-			) : null}
+			) : null} */}
 
 			<section>
-				<h2>Items</h2>
-
 				{currentView === 'home' ? (
-					<AllItems
-						items={items}
-						handleClickViewButton={handleClickViewButton}
-					/>
+					<section>
+						<h2>Items (Delete)</h2>
+						<AllItems
+							items={items}
+							handleClickViewButton={handleClickViewButton}
+						/>
+					</section>
 				) : (
 					<SelectedItem
 						selectedItem={selectedItem}

@@ -1,11 +1,11 @@
 import React from 'react';
 
 const ButtonAddItem = (props) => {
-    const { setDisplayAddItem } = props;
+    const { setDisplayAddItem, setCurrentView } = props;
 
 	return (
 		<div>
-			<button onClick={() => setDisplayAddItem(true)}>Add Item</button>
+			<button onClick={() => setCurrentView("add item")}>Nav Add Item</button>
 		</div>
 	);
 };
