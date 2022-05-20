@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddItemForm = (props) => {
-	const { handleClickAddItem, handleAddItem, itemToAdd } = props;
+	const { handleClickAddItem, handleAddItem, itemToAdd, setDisplayAddItem } = props;
 	return (
 		<section>
 			<h2>Add an Item</h2>
@@ -23,8 +23,8 @@ const AddItemForm = (props) => {
                 />
 			</label>
 
-            <button>X</button>
-			<button onClick={handleClickAddItem}>Add Item</button>
+            <button onClick={() => setDisplayAddItem(false)}>X</button>
+			<button onClick={handleClickAddItem}>Done</button>
             {/* <h3>Name: { itemToAdd.name } Price:{ itemToAdd.price }</h3> */}
         </section>
 	);

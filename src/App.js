@@ -14,16 +14,17 @@ import ButtonDisplayAllItems from './components/ButtonDisplayAllItems';
 import InputReadOnly from './components/InputReadOnly';
 import EditItemForm from './components/EditItemForm';
 import MyInput from './components/MyInput';
-
+import ButtonAddItem from './components/ButtonAddItem';
 
 function App() {
 	// State
 	const [ color, setColor ] = useState('blue');
 	const [ items, setItems ] = useState([]);
-	const [ selectedItem, setSelectedItem ] = useState( {
-		name: "",
-		price: ""
+	const [ selectedItem, setSelectedItem ] = useState({
+		name  : '',
+		price : ''
 	});
+	const [ displayAddItem, setDisplayAddItem ] = useState(false);
 	const [ editedItem, setEditedItem ] = useState('');
 	const [ isEditing, setIsEditing ] = useState(false);
 
@@ -98,18 +99,16 @@ function App() {
 	// Edit
 	const handleClickEditItemButton = () => {
 		setIsEditing(true);
-		
 	};
 
 	const handleClickSaveEditButton = (item) => {
 		const id = item.id;
 		// console.log('🔥 Save Button: Id', selectedItem.name);
 		// console.log("💜 Save Button", inputNameRef.current.value, inputPriceRef.current.value);
-		const newEdit = { 
-			name: inputNameRef.current.value, 
-			price: inputPriceRef.current.value
+		const newEdit = {
+			name  : inputNameRef.current.value,
+			price : inputPriceRef.current.value
 		};
-
 
 		axios
 			.patch(`/items/${id}`, newEdit)
@@ -124,12 +123,15 @@ function App() {
 	return (
 		<div>
 			<Navbar />
-			<AddItemForm
-				handleClickAddItem={handleClickAddItem}
-				itemToAdd={itemToAdd}
-				setItemToAdd={setItemToAdd}
-				handleAddItem={handleAddItem}
-			/>
+			{displayAddItem ? (
+				<AddItemForm
+					handleClickAddItem={handleClickAddItem}
+					itemToAdd={itemToAdd}
+					setItemToAdd={setItemToAdd}
+					handleAddItem={handleAddItem}
+					setDisplayAddItem={setDisplayAddItem}
+				/>
+			) : <ButtonAddItem setDisplayAddItem={setDisplayAddItem} />}
 
 			{isEditing ? (
 				<EditItemForm
@@ -160,8 +162,6 @@ function App() {
 					/>
 				)}
 			</section>
-
-			
 		</div>
 	);
 }
