@@ -89,7 +89,7 @@ function App() {
 					setCurrentView('home');
 					// setDisplayAddItem(false);
 					handleDisplayAllItems();
-					setItemToAdd({ name: '', price: '' });
+					setItemToAdd({ name: '', price: '', owner: '', description:'' });
 				})
 				.catch((err) => console.log(err));
 		} else {
@@ -98,7 +98,7 @@ function App() {
 	};
 
 	const handleClickCancelAddItem = () => {
-		setItemToAdd({ name: '', price: '' });
+		setItemToAdd({ name: '', price: '', owner: '', description:'' });
 		setCurrentView('home');
 	};
 
