@@ -161,6 +161,7 @@ function App() {
 
 		let isValidItem = checkValidItem(newEdit);
 		console.log(`🔥 PATCH with ${dbURL}`);
+		console.log('💜 Item patch:', newEdit);
 
 		if (isValidItem) {
 			axios
