@@ -19,6 +19,7 @@ import ButtonAddItem from './components/ButtonAddItem';
 import ButtonMyProfile from './components/ButtonMyProfile';
 import AllItemsByOwner from './components/AllItemsByOwner';
 import ButtonSelectUser from './components/ButtonSelectUser';
+import ButtonBuy from './components/ButtonBuy';
 
 const dbURL = 'https://turnip-api-2.herokuapp.com';
 
@@ -240,6 +241,7 @@ function App() {
 			{currentView === 'single item' ? (
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					{currentUser !== selectedItem.owner ? <ButtonBuy /> : null}
 					<h2>Single Item</h2>
 					<SelectedItem
 						selectedItem={selectedItem}
