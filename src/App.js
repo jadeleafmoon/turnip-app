@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
+import { checkValidItem } from './utils';
 
 import Navbar from './components/Navbar';
 import AddItemForm from './components/AddItemForm';
@@ -76,13 +77,21 @@ function App() {
 		setItemToAdd({ ...itemToAdd, ...newItem });
 	};
 
-	const handleClickAddItem = () => {
-		axios
-			.post('/items', itemToAdd)
-			.then((response) => {
-				handleDisplayAllItems();
-			})
-			.catch((err) => console.log(err));
+	const handleClickAddItem = (item) => {
+		const newItem = item;
+		let isValidItem = checkValidItem(item);
+
+		if (isValidItem) {
+			axios
+				.post('/items', item)
+				.then((response) => {
+					setDisplayAddItem(false);
+					handleDisplayAllItems();
+				})
+				.catch((err) => console.log(err));
+		} else {
+			console.log('Fix your input!');
+		}
 	};
 
 	const handleClickDeleteItemButton = (item) => {
@@ -125,13 +134,15 @@ function App() {
 			<Navbar />
 			{displayAddItem ? (
 				<AddItemForm
+					handleAddItem={handleAddItem}
 					handleClickAddItem={handleClickAddItem}
 					itemToAdd={itemToAdd}
 					setItemToAdd={setItemToAdd}
-					handleAddItem={handleAddItem}
 					setDisplayAddItem={setDisplayAddItem}
 				/>
-			) : <ButtonAddItem setDisplayAddItem={setDisplayAddItem} />}
+			) : (
+				<ButtonAddItem setDisplayAddItem={setDisplayAddItem} />
+			)}
 
 			{isEditing ? (
 				<EditItemForm

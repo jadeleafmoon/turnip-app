@@ -10,7 +10,8 @@ const AddItemForm = (props) => {
                     type="text" 
                     name="name"
                     value={itemToAdd.name} 
-                    onChange={(e) => handleAddItem(e)} 
+                    onChange={(e) => handleAddItem(e)}
+                    required
                 />
 			</label>
 
@@ -19,13 +20,13 @@ const AddItemForm = (props) => {
                     type="text" 
                     name="price"
                     value={itemToAdd.price} 
-                    onChange={(e) => handleAddItem(e)} 
+                    onChange={(e) => handleAddItem(e)}
+                    required
                 />
 			</label>
 
             <button onClick={() => setDisplayAddItem(false)}>X</button>
-			<button onClick={handleClickAddItem}>Done</button>
-            {/* <h3>Name: { itemToAdd.name } Price:{ itemToAdd.price }</h3> */}
+			<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
         </section>
 	);
 };
