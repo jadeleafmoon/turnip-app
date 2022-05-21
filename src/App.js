@@ -43,7 +43,7 @@ function App() {
 		owner       : currentUser,
 		description : ''
 	});
-
+	const [ itemWasBought, setItemWasBought ] = useState(false);
 	const [ currentView, setCurrentView ] = useState('home');
 
 	const inputNameRef = useRef(null);
@@ -90,10 +90,7 @@ function App() {
 	};
 
 	const handleClickAddItem = (item) => {
-		
-		
-
-		const newItem = { ...item, owner: currentUser }
+		const newItem = { ...item, owner: currentUser };
 		console.log('💜 Item to add:', newItem);
 
 		let isValidItem = checkValidItem(item);
@@ -180,6 +177,20 @@ function App() {
 		setCurrentView('my profile');
 	};
 
+	const handleClickBuy = () => {
+		const id = selectedItem.id;
+		const newOwner = {
+			owner : currentUser
+		};
+
+		axios
+			.patch(`${dbURL}/items/${id}`, newOwner)
+			.then((response) => {
+				setItemWasBought(true);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	// const handleTest = () => {
 	// 	axios.get('https://jsonplaceholder.typicode.com/todos/2').then((data) => {
 	// 		console.log('🔥 axios test', data.data);
@@ -247,7 +258,10 @@ function App() {
 			{currentView === 'single item' ? (
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-					{currentUser !== selectedItem.owner ? <ButtonBuy /> : null}
+					{currentUser !== selectedItem.owner ? (
+						<ButtonBuy handleClickBuy={handleClickBuy} />
+					) : null}
+					{itemWasBought && <h2>You bought the item!</h2>}
 					<h2>Single Item</h2>
 					<SelectedItem
 						selectedItem={selectedItem}

@@ -1,9 +1,10 @@
 import React from 'react';
 
-const ButtonBuy = () => {
+const ButtonBuy = (props) => {
+	const { handleClickBuy } = props;
 	return (
 		<div>
-			<button>Buy</button>
+			<button onClick={handleClickBuy}>Buy</button>
 		</div>
 	);
 };
