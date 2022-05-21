@@ -258,16 +258,15 @@ function App() {
 			{currentView === 'single item' ? (
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-					{currentUser !== selectedItem.owner ? (
-						<ButtonBuy handleClickBuy={handleClickBuy} />
-					) : null}
-					{itemWasBought && <h2>You bought the item!</h2>}
+					
 					<h2>Single Item</h2>
 					<SelectedItem
 						selectedItem={selectedItem}
 						handleClickDeleteItemButton={handleClickDeleteItemButton}
 						handleClickEditItemButton={handleClickEditItemButton}
 						currentUser={currentUser}
+						handleClickBuy={handleClickBuy}
+						itemWasBought={itemWasBought}
 					/>
 				</section>
 			) : null}

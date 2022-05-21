@@ -1,15 +1,19 @@
 import React from 'react';
+import ButtonBuy from './ButtonBuy';
 
 const SelectedItem = (props) => {
 	const {
 		selectedItem,
 		handleClickDeleteItemButton,
 		handleClickEditItemButton,
-		currentUser
+		currentUser,
+		handleClickBuy,
+		itemWasBought
 	} = props;
 	return (
 		<section>
 			<div>
+				{itemWasBought && <h2>You bought the item!</h2>}
 				<span>
 					<p>{selectedItem.id}</p>
 					<p>{selectedItem.name}</p>
@@ -26,7 +30,7 @@ const SelectedItem = (props) => {
 							Edit
 						</button>
 					</div>
-				) : null}
+				) : <ButtonBuy handleClickBuy={handleClickBuy} />}
 			</div>
 		</section>
 	);
