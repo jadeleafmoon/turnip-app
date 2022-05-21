@@ -62,6 +62,13 @@ button:hover {
     margin-top: 0em;
 }
 
+.bottom-buttons-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    margin-bottom: 1em;
+}
+
 .item-card {
     display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -69,6 +76,17 @@ button:hover {
 
 .items-top-row {
     font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.add-item-section {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+.subtitle {
     margin-top: 1em;
     margin-bottom: 1em;
 }

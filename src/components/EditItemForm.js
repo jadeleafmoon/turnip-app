@@ -12,7 +12,7 @@ const EditItemForm = (props) => {
 	} = props;
 	return (
 		<div>
-			<h2>Edit Item</h2>
+			<h3 className="subtitle">Edit Item</h3>
 			<div>
                 <p>Item name:</p>
 				<input

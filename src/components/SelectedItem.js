@@ -13,16 +13,21 @@ const SelectedItem = (props) => {
 	return (
 		<section>
 			<div>
-				{itemWasBought && <h2>You bought the item!</h2>}
-				<span>
-					<p>{selectedItem.id}</p>
+				{itemWasBought && <h3 className="subtitle">You bought the item!</h3>}
+				<div className="item-card items-top-row">
+					<span>Owner</span>
+					<span>Item Name</span>
+					<span>Price</span>
+					<span>Description</span>
+				</div>
+				<span className="item-card">
+					<p>{selectedItem.owner}</p>
 					<p>{selectedItem.name}</p>
 					<p>{selectedItem.price}</p>
-					<p>{selectedItem.owner}</p>
 					<p>{selectedItem.description}</p>
 				</span>
 				{selectedItem.owner === currentUser ? (
-					<div>
+					<div className="bottom-buttons-bar">
 						<button onClick={() => handleClickDeleteItemButton(selectedItem)}>
 							Delete
 						</button>

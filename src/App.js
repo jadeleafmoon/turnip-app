@@ -234,7 +234,7 @@ function App() {
 						<ButtonSelectUser setCurrentUser={setCurrentUser} />
 						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
-					<h2>All Items</h2>
+					<h3 className="subtitle">All Items</h3>
 					<AllItems
 						items={items}
 						handleClickViewButton={handleClickViewButton}
@@ -301,7 +301,7 @@ function App() {
 						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 
-					<h2>Single Item</h2>
+					<h3>Single Item</h3>
 					<SelectedItem
 						selectedItem={selectedItem}
 						handleClickDeleteItemButton={handleClickDeleteItemButton}
@@ -327,7 +327,7 @@ function App() {
 						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 					
-					<h2>Welcome {currentUser}! These are your items.</h2>
+					<h3 className="subtitle">Welcome {currentUser}! These are your items.</h3>
 					<AllItemsByOwner
 						currentUser={currentUser}
 						items={items}

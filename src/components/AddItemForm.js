@@ -11,13 +11,14 @@ const AddItemForm = (props) => {
 		currentUser
 	} = props;
 	return (
-		<section>
-			<h2>Add an Item</h2>
+		<section className="add-item-section">
+			<h3 className="subtitle">What would you like to sell?</h3>
+			{/* <div>
+				<p>Owner:</p>
+				<p>{currentUser}</p>
+			</div> */}
 			<div>
-				<p>Owner: {currentUser}</p>
-			</div>
-			<div>
-				<p>Item name:</p>
+				<p><b>Item name:</b></p>
 				<input
 					type="text"
 					name="name"
@@ -28,7 +29,7 @@ const AddItemForm = (props) => {
 			</div>
 
 			<div>
-				<p>Price:</p>
+				<p><b>Price:</b></p>
 				<input
 					type="text"
 					name="price"
@@ -39,7 +40,7 @@ const AddItemForm = (props) => {
 			</div>
 
 			<div>
-				<p>Description:</p>
+				<p><b>Description:</b></p>
 				<textarea
 					name="description"
 					value={itemToAdd.description}
