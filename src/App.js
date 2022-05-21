@@ -57,10 +57,20 @@ function App() {
 	}, []);
 
 	// Handlers
+
+	const resetState = () => {
+		setItemWasBought(false);
+		setItemToAdd({
+			name        : '',
+			price       : '',
+			owner       : currentUser,
+			description : ''
+		});
+	};
+
 	const handleClickHomeButton = () => {
 		handleDisplayAllItems();
-		// setCurrentView("home");
-		// setIsEditing(false);
+		resetState();
 	};
 
 	const handleClickViewButton = (item) => {
@@ -183,6 +193,8 @@ function App() {
 			owner : currentUser
 		};
 
+		setSelectedItem({...selectedItem, ...newOwner});
+
 		axios
 			.patch(`${dbURL}/items/${id}`, newOwner)
 			.then((response) => {
@@ -258,7 +270,7 @@ function App() {
 			{currentView === 'single item' ? (
 				<section>
 					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-					
+
 					<h2>Single Item</h2>
 					<SelectedItem
 						selectedItem={selectedItem}

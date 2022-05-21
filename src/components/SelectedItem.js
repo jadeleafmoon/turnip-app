@@ -30,7 +30,9 @@ const SelectedItem = (props) => {
 							Edit
 						</button>
 					</div>
-				) : <ButtonBuy handleClickBuy={handleClickBuy} />}
+				) : (
+					<ButtonBuy handleClickBuy={handleClickBuy} />
+				)}
 			</div>
 		</section>
 	);
