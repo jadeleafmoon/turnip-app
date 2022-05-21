@@ -193,7 +193,7 @@ function App() {
 			owner : currentUser
 		};
 
-		setSelectedItem({...selectedItem, ...newOwner});
+		setSelectedItem({ ...selectedItem, ...newOwner });
 
 		axios
 			.patch(`${dbURL}/items/${id}`, newOwner)
@@ -211,23 +211,28 @@ function App() {
 
 	// Render
 	return (
-		<div>
+		<main id="main-wrapper">
 			<Navbar
 				currentView={currentView}
 				setCurrentView={setCurrentView}
 				handleClickHomeButton={handleClickHomeButton}
 			/>
 
+			<section id="body-wrapper">
+
 			{<h2>User: {currentUser} </h2>}
 
 			{currentView === 'home' ? (
 				<section>
-					<ButtonMyProfile
-						setCurrentView={setCurrentView}
-						handleClickMyProfileButton={handleClickMyProfileButton}
-					/>
-					<ButtonAddItem setCurrentView={setCurrentView} />
-					<ButtonSelectUser setCurrentUser={setCurrentUser} />
+					<div>
+						<ButtonHome handleClickHomeButton={handleClickHomeButton} color={"on"}/>
+						<ButtonMyProfile
+							setCurrentView={setCurrentView}
+							handleClickMyProfileButton={handleClickMyProfileButton}
+						/>
+						<ButtonAddItem setCurrentView={setCurrentView} />
+						<ButtonSelectUser setCurrentUser={setCurrentUser} />
+					</div>
 					<h2>All Items</h2>
 					<AllItems
 						items={items}
@@ -238,7 +243,14 @@ function App() {
 
 			{currentView === 'add item' ? (
 				<section>
-					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<div>
+						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+						<ButtonMyProfile
+							setCurrentView={setCurrentView}
+							handleClickMyProfileButton={handleClickMyProfileButton}
+						/>
+						<ButtonAddItem setCurrentView={setCurrentView} />
+					</div>
 					<AddItemForm
 						handleAddItem={handleAddItem}
 						handleClickAddItem={handleClickAddItem}
@@ -254,7 +266,13 @@ function App() {
 
 			{currentView === 'edit item' ? (
 				<section>
-					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<div>
+						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+						<ButtonMyProfile
+							setCurrentView={setCurrentView}
+							handleClickMyProfileButton={handleClickMyProfileButton}
+						/>
+					</div>
 					<EditItemForm
 						setIsEditing={setIsEditing}
 						selectedItem={selectedItem}
@@ -269,7 +287,13 @@ function App() {
 
 			{currentView === 'single item' ? (
 				<section>
-					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+					<div>
+						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+						<ButtonMyProfile
+							setCurrentView={setCurrentView}
+							handleClickMyProfileButton={handleClickMyProfileButton}
+						/>
+					</div>
 
 					<h2>Single Item</h2>
 					<SelectedItem
@@ -285,8 +309,10 @@ function App() {
 
 			{currentView === 'my profile' ? (
 				<section>
-					<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-					<ButtonAddItem setCurrentView={setCurrentView} />
+					<div>
+						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+						<ButtonAddItem setCurrentView={setCurrentView} />
+					</div>
 					<h2>Welcome {currentUser}! These are your items.</h2>
 					<AllItemsByOwner
 						currentUser={currentUser}
@@ -295,7 +321,8 @@ function App() {
 					/>
 				</section>
 			) : null}
-		</div>
+			</section>
+		</main>
 	);
 }
 

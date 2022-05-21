@@ -48,7 +48,7 @@ const AddItemForm = (props) => {
 				/>
 			</div>
 
-			<button onClick={handleClickCancelAddItem}>X</button>
+			<button onClick={handleClickCancelAddItem}>Cancel</button>
 			<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
 		</section>
 	);
