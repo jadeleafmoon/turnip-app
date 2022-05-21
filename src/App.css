@@ -66,3 +66,9 @@ button:hover {
     display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+
+.items-top-row {
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}

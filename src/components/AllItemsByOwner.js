@@ -4,13 +4,18 @@ import { v4 as uuidv4 } from 'uuid';
 const AllItemsByOwner = (props) => {
 	const { items, handleClickViewButton, currentUser } = props;
 	return (
-		<section>
+		<section className="item-list">
+			<div key={uuidv4()} className="item-card items-top-row">
+				<span>Owner</span>
+				<span>Item Name</span>
+				<span>Price</span>
+			</div>
 			{items.filter((item) => item.owner === currentUser).map((item) => {
 				return (
-					<div key={uuidv4()}>
-						<span>
-							{item.owner} - {item.name} - {item.price}
-						</span>
+					<div key={uuidv4()} className="item-card">
+						<span>{item.owner}</span>
+						<span>{item.name}</span>
+						<span>{item.price}</span>
 						<button onClick={() => handleClickViewButton(item)}>View</button>
 					</div>
 				);

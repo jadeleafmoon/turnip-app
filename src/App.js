@@ -251,6 +251,7 @@ function App() {
 							handleClickMyProfileButton={handleClickMyProfileButton}
 						/>
 						<ButtonAddItem setCurrentView={setCurrentView} color={"on"}/>
+						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 					<AddItemForm
 						handleAddItem={handleAddItem}
@@ -273,6 +274,7 @@ function App() {
 							setCurrentView={setCurrentView}
 							handleClickMyProfileButton={handleClickMyProfileButton}
 						/>
+						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 					<EditItemForm
 						setIsEditing={setIsEditing}
@@ -294,6 +296,9 @@ function App() {
 							setCurrentView={setCurrentView}
 							handleClickMyProfileButton={handleClickMyProfileButton}
 						/>
+						<div> </div>
+						<div> </div>
+						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 
 					<h2>Single Item</h2>
@@ -318,7 +323,10 @@ function App() {
 							color={"on"}
 						/>
 						<ButtonAddItem setCurrentView={setCurrentView} />
+						<div> </div>
+						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
+					
 					<h2>Welcome {currentUser}! These are your items.</h2>
 					<AllItemsByOwner
 						currentUser={currentUser}
