@@ -249,7 +249,7 @@ function App() {
 							setCurrentView={setCurrentView}
 							handleClickMyProfileButton={handleClickMyProfileButton}
 						/>
-						<ButtonAddItem setCurrentView={setCurrentView} />
+						<ButtonAddItem setCurrentView={setCurrentView} color={"on"}/>
 					</div>
 					<AddItemForm
 						handleAddItem={handleAddItem}
@@ -311,6 +311,11 @@ function App() {
 				<section>
 					<div>
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+						<ButtonMyProfile
+							setCurrentView={setCurrentView}
+							handleClickMyProfileButton={handleClickMyProfileButton}
+							color={"on"}
+						/>
 						<ButtonAddItem setCurrentView={setCurrentView} />
 					</div>
 					<h2>Welcome {currentUser}! These are your items.</h2>
