@@ -274,6 +274,10 @@ function App() {
 							setCurrentView={setCurrentView}
 							handleClickMyProfileButton={handleClickMyProfileButton}
 						/>
+						<div>
+
+						</div>
+						<div></div>
 						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 					<EditItemForm
@@ -301,7 +305,7 @@ function App() {
 						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 
-					<h3>Single Item</h3>
+					<h3 className="subtitle">Single Item</h3>
 					<SelectedItem
 						selectedItem={selectedItem}
 						handleClickDeleteItemButton={handleClickDeleteItemButton}

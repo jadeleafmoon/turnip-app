@@ -7,14 +7,14 @@ const EditItemForm = (props) => {
 		handleClickSaveEditButton,
 		inputNameRef,
 		inputPriceRef,
-        inputDescriptionRef,
+		inputDescriptionRef,
 		setCurrentView
 	} = props;
 	return (
 		<div>
 			<h3 className="subtitle">Edit Item</h3>
 			<div>
-                <p>Item name:</p>
+				<p>Item name:</p>
 				<input
 					type="text"
 					name="name"
@@ -23,7 +23,7 @@ const EditItemForm = (props) => {
 				/>
 			</div>
 			<div>
-                <p>Price:</p>
+				<p>Price:</p>
 				<input
 					type="text"
 					name="price"
@@ -32,7 +32,7 @@ const EditItemForm = (props) => {
 				/>
 			</div>
 			<div>
-                <p>Description:</p>
+				<p>Description:</p>
 				<textarea
 					name="description"
 					defaultValue={selectedItem.description}
@@ -40,10 +40,12 @@ const EditItemForm = (props) => {
 				/>
 			</div>
 
-			<button onClick={() => setCurrentView('home')}>X</button>
-			<button onClick={() => handleClickSaveEditButton(selectedItem)}>
-				Save
-			</button>
+			<div className="bottom-buttons-bar">
+				<button onClick={() => setCurrentView('home')}>X</button>
+				<button onClick={() => handleClickSaveEditButton(selectedItem)}>
+					Save
+				</button>
+			</div>
 		</div>
 	);
 };

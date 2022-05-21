@@ -18,7 +18,9 @@ const AddItemForm = (props) => {
 				<p>{currentUser}</p>
 			</div> */}
 			<div>
-				<p><b>Item name:</b></p>
+				<p>
+					<b>Item name:</b>
+				</p>
 				<input
 					type="text"
 					name="name"
@@ -29,7 +31,9 @@ const AddItemForm = (props) => {
 			</div>
 
 			<div>
-				<p><b>Price:</b></p>
+				<p>
+					<b>Price:</b>
+				</p>
 				<input
 					type="text"
 					name="price"
@@ -40,7 +44,9 @@ const AddItemForm = (props) => {
 			</div>
 
 			<div>
-				<p><b>Description:</b></p>
+				<p>
+					<b>Description:</b>
+				</p>
 				<textarea
 					name="description"
 					value={itemToAdd.description}
@@ -48,9 +54,10 @@ const AddItemForm = (props) => {
 					required
 				/>
 			</div>
-
-			<button onClick={handleClickCancelAddItem}>Cancel</button>
-			<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
+			<div className="bottom-buttons-bar">
+				<button onClick={handleClickCancelAddItem}>Cancel</button>
+				<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
+			</div>
 		</section>
 	);
 };
