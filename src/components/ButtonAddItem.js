@@ -5,7 +5,7 @@ const ButtonAddItem = (props) => {
 
 	return (
 		<div>
-			<button onClick={() => setCurrentView("add item")} activateColor={color}>Sell Item</button>
+			<button onClick={() => setCurrentView("add item")} activate-color={color}>Sell Item</button>
 		</div>
 	);
 };

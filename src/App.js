@@ -220,11 +220,11 @@ function App() {
 
 			<section id="body-wrapper">
 
-			{<h2>User: {currentUser} </h2>}
+			
 
 			{currentView === 'home' ? (
 				<section>
-					<div>
+					<div className="button-bar">
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} color={"on"}/>
 						<ButtonMyProfile
 							setCurrentView={setCurrentView}
@@ -232,6 +232,7 @@ function App() {
 						/>
 						<ButtonAddItem setCurrentView={setCurrentView} />
 						<ButtonSelectUser setCurrentUser={setCurrentUser} />
+						<span>{<h3> {currentUser} </h3>}</span>
 					</div>
 					<h2>All Items</h2>
 					<AllItems
@@ -243,7 +244,7 @@ function App() {
 
 			{currentView === 'add item' ? (
 				<section>
-					<div>
+					<div className="button-bar">
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
 						<ButtonMyProfile
 							setCurrentView={setCurrentView}
@@ -266,7 +267,7 @@ function App() {
 
 			{currentView === 'edit item' ? (
 				<section>
-					<div>
+					<div className="button-bar">
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
 						<ButtonMyProfile
 							setCurrentView={setCurrentView}
@@ -287,7 +288,7 @@ function App() {
 
 			{currentView === 'single item' ? (
 				<section>
-					<div>
+					<div className="button-bar">
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
 						<ButtonMyProfile
 							setCurrentView={setCurrentView}
@@ -309,7 +310,7 @@ function App() {
 
 			{currentView === 'my profile' ? (
 				<section>
-					<div>
+					<div className="button-bar">
 						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
 						<ButtonMyProfile
 							setCurrentView={setCurrentView}

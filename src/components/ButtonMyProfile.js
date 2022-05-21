@@ -5,7 +5,7 @@ const ButtonMyProfile = (props) => {
 
 	return (
 		<div>
-			<button onClick={handleClickMyProfileButton} activateColor={color}>My Profile</button>
+			<button onClick={handleClickMyProfileButton} activate-color={color}>My Profile</button>
 		</div>
 	);
 };
