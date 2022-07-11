@@ -1,17 +1,18 @@
 import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import React from "react";
 
-export const Card = () => {
+export const Card = (props) => {
+  const { img, title, description, price } = props;
+
   return (
     <div className="card">
       <div className="card-body">
-        <img className="card-image"/>
-        <h2 className="card-title"></h2>
-        <p className="card-description"></p>
+        <img src={img} className="card-image" alt="item to sell" />
+        <h2 className="card-title">{title}</h2>
+        <p className="card-description">{description}</p>
+        <p className="card-price">{price}</p>
       </div>
-      <button className="card-button"></button>
-
+      <button className="card-button">View</button>
     </div>
-
   );
 };
