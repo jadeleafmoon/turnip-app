@@ -1,7 +1,6 @@
 import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import React from "react";
 
-
 export const Card = (props) => {
   const { img, title, description, price, item, handleClickViewButton } = props;
 
