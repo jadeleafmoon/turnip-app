@@ -183,9 +183,7 @@ function App() {
 		}
 	};
 
-	const handleClickMyProfileButton = () => {
-		setCurrentView('my profile');
-	};
+	const handleClickMyProfileButton = () => setCurrentView('my profile');
 
 	const handleClickBuy = () => {
 		const id = selectedItem.id;
@@ -219,126 +217,126 @@ function App() {
 			/>
 
 			<section id="body-wrapper">
-
-			
-
-			{currentView === 'home' ? (
-				<section>
-					<div className="button-bar">
-						<ButtonHome handleClickHomeButton={handleClickHomeButton} color={"on"}/>
-						<ButtonMyProfile
-							setCurrentView={setCurrentView}
-							handleClickMyProfileButton={handleClickMyProfileButton}
-						/>
-						<ButtonAddItem setCurrentView={setCurrentView} />
-						<ButtonSelectUser setCurrentUser={setCurrentUser} />
-						<span>{<h3> {currentUser} </h3>}</span>
-					</div>
-					<h3 className="subtitle">All Items</h3>
-					<AllItems
-						items={items}
-						handleClickViewButton={handleClickViewButton}
-					/>
-				</section>
-			) : null}
-
-			{currentView === 'add item' ? (
-				<section>
-					<div className="button-bar">
-						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-						<ButtonMyProfile
-							setCurrentView={setCurrentView}
-							handleClickMyProfileButton={handleClickMyProfileButton}
-						/>
-						<ButtonAddItem setCurrentView={setCurrentView} color={"on"}/>
-						<span>{<h3> {currentUser} </h3>}</span>
-					</div>
-					<AddItemForm
-						handleAddItem={handleAddItem}
-						handleClickAddItem={handleClickAddItem}
-						itemToAdd={itemToAdd}
-						setItemToAdd={setItemToAdd}
-						setDisplayAddItem={setDisplayAddItem}
-						setCurrentView={setCurrentView}
-						handleClickCancelAddItem={handleClickCancelAddItem}
-						currentUser={currentUser}
-					/>
-				</section>
-			) : null}
-
-			{currentView === 'edit item' ? (
-				<section>
-					<div className="button-bar">
-						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-						<ButtonMyProfile
-							setCurrentView={setCurrentView}
-							handleClickMyProfileButton={handleClickMyProfileButton}
-						/>
-						<div>
-
+				{currentView === 'home' ? (
+					<section>
+						<div className="button-bar">
+							<ButtonHome
+								handleClickHomeButton={handleClickHomeButton}
+								color={'on'}
+							/>
+							<ButtonMyProfile
+								setCurrentView={setCurrentView}
+								handleClickMyProfileButton={handleClickMyProfileButton}
+							/>
+							<ButtonAddItem setCurrentView={setCurrentView} />
+							<ButtonSelectUser setCurrentUser={setCurrentUser} />
+							<span>{<h3> {currentUser} </h3>}</span>
 						</div>
-						<div></div>
-						<span>{<h3> {currentUser} </h3>}</span>
-					</div>
-					<EditItemForm
-						setIsEditing={setIsEditing}
-						selectedItem={selectedItem}
-						handleClickSaveEditButton={handleClickSaveEditButton}
-						inputNameRef={inputNameRef}
-						inputPriceRef={inputPriceRef}
-						inputDescriptionRef={inputDescriptionRef}
-						setCurrentView={setCurrentView}
-					/>
-				</section>
-			) : null}
-
-			{currentView === 'single item' ? (
-				<section>
-					<div className="button-bar">
-						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-						<ButtonMyProfile
-							setCurrentView={setCurrentView}
-							handleClickMyProfileButton={handleClickMyProfileButton}
+						<h3 className="subtitle">All Items</h3>
+						<AllItems
+							items={items}
+							handleClickViewButton={handleClickViewButton}
 						/>
-						<div> </div>
-						<div> </div>
-						<span>{<h3> {currentUser} </h3>}</span>
-					</div>
+					</section>
+				) : null}
 
-					<h3 className="subtitle">Single Item</h3>
-					<SelectedItem
-						selectedItem={selectedItem}
-						handleClickDeleteItemButton={handleClickDeleteItemButton}
-						handleClickEditItemButton={handleClickEditItemButton}
-						currentUser={currentUser}
-						handleClickBuy={handleClickBuy}
-						itemWasBought={itemWasBought}
-					/>
-				</section>
-			) : null}
-
-			{currentView === 'my profile' ? (
-				<section>
-					<div className="button-bar">
-						<ButtonHome handleClickHomeButton={handleClickHomeButton} />
-						<ButtonMyProfile
+				{currentView === 'add item' ? (
+					<section>
+						<div className="button-bar">
+							<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+							<ButtonMyProfile
+								setCurrentView={setCurrentView}
+								handleClickMyProfileButton={handleClickMyProfileButton}
+							/>
+							<ButtonAddItem setCurrentView={setCurrentView} color={'on'} />
+							<span>{<h3> {currentUser} </h3>}</span>
+						</div>
+						<AddItemForm
+							handleAddItem={handleAddItem}
+							handleClickAddItem={handleClickAddItem}
+							itemToAdd={itemToAdd}
+							setItemToAdd={setItemToAdd}
+							setDisplayAddItem={setDisplayAddItem}
 							setCurrentView={setCurrentView}
-							handleClickMyProfileButton={handleClickMyProfileButton}
-							color={"on"}
+							handleClickCancelAddItem={handleClickCancelAddItem}
+							currentUser={currentUser}
 						/>
-						<ButtonAddItem setCurrentView={setCurrentView} />
-						<div> </div>
-						<span>{<h3> {currentUser} </h3>}</span>
-					</div>
-					
-					<h3 className="subtitle">Welcome {currentUser}! These are your items.</h3>
-					<AllItemsByOwner
-						currentUser={currentUser}
-						items={items}
-						handleClickViewButton={handleClickViewButton}
-					/>
-				</section>
-			) : null}
+					</section>
+				) : null}
+
+				{currentView === 'edit item' ? (
+					<section>
+						<div className="button-bar">
+							<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+							<ButtonMyProfile
+								setCurrentView={setCurrentView}
+								handleClickMyProfileButton={handleClickMyProfileButton}
+							/>
+							<div />
+							<div />
+							<span>{<h3> {currentUser} </h3>}</span>
+						</div>
+						<EditItemForm
+							setIsEditing={setIsEditing}
+							selectedItem={selectedItem}
+							handleClickSaveEditButton={handleClickSaveEditButton}
+							inputNameRef={inputNameRef}
+							inputPriceRef={inputPriceRef}
+							inputDescriptionRef={inputDescriptionRef}
+							setCurrentView={setCurrentView}
+						/>
+					</section>
+				) : null}
+
+				{currentView === 'single item' ? (
+					<section>
+						<div className="button-bar">
+							<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+							<ButtonMyProfile
+								setCurrentView={setCurrentView}
+								handleClickMyProfileButton={handleClickMyProfileButton}
+							/>
+							<div> </div>
+							<div> </div>
+							<span>{<h3> {currentUser} </h3>}</span>
+						</div>
+
+						<h3 className="subtitle">Single Item</h3>
+						<SelectedItem
+							selectedItem={selectedItem}
+							handleClickDeleteItemButton={handleClickDeleteItemButton}
+							handleClickEditItemButton={handleClickEditItemButton}
+							currentUser={currentUser}
+							handleClickBuy={handleClickBuy}
+							itemWasBought={itemWasBought}
+						/>
+					</section>
+				) : null}
+
+				{currentView === 'my profile' ? (
+					<section>
+						<div className="button-bar">
+							<ButtonHome handleClickHomeButton={handleClickHomeButton} />
+							<ButtonMyProfile
+								setCurrentView={setCurrentView}
+								handleClickMyProfileButton={handleClickMyProfileButton}
+								color={'on'}
+							/>
+							<ButtonAddItem setCurrentView={setCurrentView} />
+							<div> </div>
+							<span>{<h3> {currentUser} </h3>}</span>
+						</div>
+
+						<h3 className="subtitle">
+							Welcome {currentUser}! These are your items.
+						</h3>
+						<AllItemsByOwner
+							currentUser={currentUser}
+							items={items}
+							handleClickViewButton={handleClickViewButton}
+						/>
+					</section>
+				) : null}
 			</section>
 		</main>
 	);
