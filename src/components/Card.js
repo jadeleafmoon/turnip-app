@@ -2,7 +2,7 @@ import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import React from "react";
 
 export const Card = (props) => {
-  const { img, title, description, price } = props;
+  const { img, title, description, price, item, handleClickViewButton } = props;
 
   return (
     <div className="card">
@@ -12,7 +12,9 @@ export const Card = (props) => {
         <p className="card-description">{description}</p>
         <p className="card-price">{price}</p>
       </div>
-      <button className="card-button">View</button>
+      <button className="card-button" 
+      onClick={() => handleClickViewButton(item)}
+      >View</button>
     </div>
   );
 };

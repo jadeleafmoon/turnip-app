@@ -339,14 +339,14 @@ function App() {
           </section>
         ) : null}
       </section>
-      <div className="card-wrapper">
+      {/* <div className="card-wrapper">
         <Card
           img="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1626&q=80"
           title="MacBook"
           description="A new MacBook"
           price="20.00"
         />
-      </div>
+      </div> */}
     </main>
   );
 }
