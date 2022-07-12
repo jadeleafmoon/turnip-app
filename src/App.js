@@ -34,6 +34,7 @@ function App() {
     price: "",
     owner: currentUser,
     description: "",
+    imageUrl: "",
   });
   const [displayAddItem, setDisplayAddItem] = useState(false);
   const [editedItem, setEditedItem] = useState("");
@@ -44,6 +45,7 @@ function App() {
     price: "",
     owner: currentUser,
     description: "",
+    imageUrl: "",
   });
   const [itemWasBought, setItemWasBought] = useState(false);
   const [currentView, setCurrentView] = useState("home");
@@ -67,6 +69,7 @@ function App() {
       price: "",
       owner: currentUser,
       description: "",
+      imageUrl: "",
     });
   };
 
@@ -122,6 +125,7 @@ function App() {
             price: "",
             owner: currentUser,
             description: "",
+            imageUrl: "",
           })
         )
         .catch((err) => console.log(err));
@@ -135,8 +139,8 @@ function App() {
       name: "",
       price: "",
       owner: currentUser,
-
       description: "",
+      imageUrl: "",
     });
     setCurrentView("home");
   };

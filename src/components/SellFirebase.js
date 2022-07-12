@@ -5,7 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 // {/* <div key={uuidv4()}>{ item.name }</div> */}
 
-function SellFirebase() {
+function SellFirebase(props) {
+
+  const { itemToAdd, setItemToAdd } = props;
+
   const [imageToUpload, setImageToUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "images/");
@@ -41,7 +44,7 @@ function SellFirebase() {
           // same as setImage([...imageList, url])
           setImageList((prev) => [...prev, url]);
           // setIsLoading(false);
-          
+
         });
       });
     });

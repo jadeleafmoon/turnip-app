@@ -6,6 +6,7 @@ const AddItemForm = (props) => {
 		handleClickAddItem,
 		handleAddItem,
 		itemToAdd,
+		setItemToAdd,
 		setDisplayAddItem,
 		setCurrentView,
 		handleClickCancelAddItem,
@@ -60,7 +61,7 @@ const AddItemForm = (props) => {
 				<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
 			</div>
 			<hr />
-			<SellFirebase />
+			<SellFirebase itemToAdd={itemToAdd} setItemToAdd={setItemToAdd}/>
 		</section>
 	);
 };
