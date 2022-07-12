@@ -51,8 +51,8 @@ function SellFirebase(props) {
   }, []);
 
   return (
-    <div className="container">
-      <p>Hello</p>
+    <div className="upload-container">
+      <h2>UPLOAD SECTION</h2>
       <p>Loading {String(isLoading)}</p>
       <input
         type="file"
