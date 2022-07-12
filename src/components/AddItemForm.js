@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Image } from "react";
 import SellFirebase from "./SellFirebase";
 import { useState, useEffect } from "react";
 import { storage } from "../firebase";
@@ -21,6 +21,7 @@ const AddItemForm = (props) => {
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "images/");
   const [isLoading, setIsLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState("");
 
   const uploadImage = () => {
     if (imageToUpload === null) return;
@@ -99,17 +100,15 @@ const AddItemForm = (props) => {
         <button onClick={() => handleDone()}>Done</button>
       </div>
       <hr />
-      {/* <SellFirebase itemToAdd={itemToAdd} setItemToAdd={setItemToAdd} /> */}
       <div className="upload-container">
-        <h2>UPLOAD SECTION</h2>
-        <p>Loading {String(isLoading)}</p>
+        <b>Upload an Image</b>
         <input
           type="file"
           onChange={(event) => {
             setImageToUpload(event.target.files[0]);
           }}
         />
-        {/* <button onClick={uploadImage}>Upload Image ☝️</button> */}
+
       </div>
     </section>
   );
