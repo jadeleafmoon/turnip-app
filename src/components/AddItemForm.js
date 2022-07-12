@@ -1,4 +1,5 @@
 import React from 'react';
+import SellFirebase from './SellFirebase';
 
 const AddItemForm = (props) => {
 	const {
@@ -58,6 +59,8 @@ const AddItemForm = (props) => {
 				<button onClick={handleClickCancelAddItem}>Cancel</button>
 				<button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
 			</div>
+			<hr />
+			<SellFirebase />
 		</section>
 	);
 };

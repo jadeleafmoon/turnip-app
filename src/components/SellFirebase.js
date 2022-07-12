@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { storage } from "./firebase";
+import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
@@ -41,6 +41,7 @@ function SellFirebase() {
           // same as setImage([...imageList, url])
           setImageList((prev) => [...prev, url]);
           // setIsLoading(false);
+          
         });
       });
     });

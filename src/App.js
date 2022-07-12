@@ -52,9 +52,6 @@ function App() {
   const inputPriceRef = useRef(null);
   const inputDescriptionRef = useRef(null);
 
-
-
-
   // Hooks
   useEffect(() => {
     console.log("First render.");
@@ -206,7 +203,6 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-
   // Render
   return (
     <main id="main-wrapper">
@@ -261,8 +257,6 @@ function App() {
               handleClickCancelAddItem={handleClickCancelAddItem}
               currentUser={currentUser}
             />
-            <hr/ >
-            <SellFirebase />
           </section>
         ) : null}
 
