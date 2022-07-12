@@ -41,7 +41,28 @@ const AddItemForm = (props) => {
     });
   };
 
-  const handleDone = () => {};
+  const handleDone = () => {
+		if (imageToUpload === null) return;
+    setIsLoading(true);
+
+    // ref means where to upload the files
+    const imageRef = ref(storage, `images/${imageToUpload.name + uuidv4()}`);
+
+    // make a reference to all the files (images) in the images/ folder on firebase
+
+    // uploadBytes(where to upload, the image you want to upload)
+    // returns a Promise
+    uploadBytes(imageRef, imageToUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        // setImageList((prev) => [...prev, url]);
+				itemToAdd.imageUrl = url;
+				handleClickAddItem(itemToAdd);
+        setIsLoading(false);
+      });
+    });
+
+		handleClickAddItem(itemToAdd);
+	};
 
   return (
     <section className="add-item-section">
@@ -86,7 +107,7 @@ const AddItemForm = (props) => {
       </div>
       <div className="bottom-buttons-bar">
         <button onClick={handleClickCancelAddItem}>Cancel</button>
-        <button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
+        <button onClick={() => handleDone()}>Done</button>
       </div>
       <hr />
       {/* <SellFirebase itemToAdd={itemToAdd} setItemToAdd={setItemToAdd} /> */}
