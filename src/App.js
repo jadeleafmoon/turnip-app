@@ -21,6 +21,7 @@ import AllItemsByOwner from "./components/AllItemsByOwner";
 import ButtonSelectUser from "./components/ButtonSelectUser";
 import ButtonBuy from "./components/ButtonBuy";
 import { Card } from "./components/Card";
+import SellFirebase from "./components/SellFirebase";
 
 const dbURL = "https://turnip-api-2.herokuapp.com";
 
@@ -205,11 +206,6 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  // const handleTest = () => {
-  // 	axios.get('https://jsonplaceholder.typicode.com/todos/2').then((data) => {
-  // 		console.log('🔥 axios test', data.data);
-  // 	});
-  // };
 
   // Render
   return (
@@ -265,6 +261,8 @@ function App() {
               handleClickCancelAddItem={handleClickCancelAddItem}
               currentUser={currentUser}
             />
+            <hr/ >
+            <SellFirebase />
           </section>
         ) : null}
 
