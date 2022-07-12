@@ -23,12 +23,11 @@ const SelectedItem = (props) => {
               alt="item to sell"
             />
             <h2 className="card-title">{selectedItem.title}</h2>
+            <p className="card-owner">{selectedItem.owner}</p>
             <p className="card-description">{selectedItem.description}</p>
             <p className="card-price">{selectedItem.price}</p>
           </div>
-        </div>
-
-        {selectedItem.owner === currentUser ? (
+          {selectedItem.owner === currentUser ? (
           <div className="bottom-buttons-bar">
             <button onClick={() => handleClickDeleteItemButton(selectedItem)}>
               Delete
@@ -40,6 +39,9 @@ const SelectedItem = (props) => {
         ) : (
           <ButtonBuy handleClickBuy={handleClickBuy} />
         )}
+        </div>
+
+
       </div>
     </section>
   );
