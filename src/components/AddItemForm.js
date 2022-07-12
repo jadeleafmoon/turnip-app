@@ -1,5 +1,9 @@
 import React from "react";
 import SellFirebase from "./SellFirebase";
+import { useState, useEffect } from "react";
+import { storage } from "../firebase";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
 
 const AddItemForm = (props) => {
   const {
@@ -12,6 +16,32 @@ const AddItemForm = (props) => {
     handleClickCancelAddItem,
     currentUser,
   } = props;
+
+  const [imageToUpload, setImageToUpload] = useState(null);
+  const [imageList, setImageList] = useState([]);
+  const imageListRef = ref(storage, "images/");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const uploadImage = () => {
+    if (imageToUpload === null) return;
+    setIsLoading(true);
+
+    // ref means where to upload the files
+    const imageRef = ref(storage, `images/${imageToUpload.name + uuidv4()}`);
+
+    // make a reference to all the files (images) in the images/ folder on firebase
+
+    // uploadBytes(where to upload, the image you want to upload)
+    // returns a Promise
+    uploadBytes(imageRef, imageToUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageList((prev) => [...prev, url]);
+        setIsLoading(false);
+      });
+    });
+  };
+
+  const handleDone = () => {};
 
   return (
     <section className="add-item-section">
@@ -59,8 +89,18 @@ const AddItemForm = (props) => {
         <button onClick={() => handleClickAddItem(itemToAdd)}>Done</button>
       </div>
       <hr />
-      <SellFirebase itemToAdd={itemToAdd} setItemToAdd={setItemToAdd} />
-
+      {/* <SellFirebase itemToAdd={itemToAdd} setItemToAdd={setItemToAdd} /> */}
+      <div className="upload-container">
+        <h2>UPLOAD SECTION</h2>
+        <p>Loading {String(isLoading)}</p>
+        <input
+          type="file"
+          onChange={(event) => {
+            setImageToUpload(event.target.files[0]);
+          }}
+        />
+        {/* <button onClick={uploadImage}>Upload Image ☝️</button> */}
+      </div>
     </section>
   );
 };

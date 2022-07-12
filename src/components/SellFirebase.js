@@ -35,6 +35,7 @@ function SellFirebase(props) {
     console.log("\n 🍎 imageList:", imageList);
   };
 
+  // Upload photos on page load
   useEffect(() => {
     // list all returns all images in that path
     listAll(imageListRef).then((response) => {
