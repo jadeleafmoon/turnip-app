@@ -112,6 +112,14 @@ button:hover {
   transition: transform 200ms ease-in;
 }
 
+.card-single-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* background-color: purple; */
+	
+}
+
 .card-single {
 	overflow: hidden;
 	box-shadow: 0 2px 20px #aaa;
@@ -120,6 +128,8 @@ button:hover {
 	flex-direction: column;
 	justify-content: space-between;
 	cursor: pointer;
+	/* background-color: purple; */
+	/* max-width: 40vw; */
 }
 
 .card:hover {

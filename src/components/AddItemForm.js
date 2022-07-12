@@ -26,13 +26,8 @@ const AddItemForm = (props) => {
     if (imageToUpload === null) return;
     setIsLoading(true);
 
-    // ref means where to upload the files
     const imageRef = ref(storage, `images/${imageToUpload.name + uuidv4()}`);
 
-    // make a reference to all the files (images) in the images/ folder on firebase
-
-    // uploadBytes(where to upload, the image you want to upload)
-    // returns a Promise
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageList((prev) => [...prev, url]);
@@ -42,27 +37,21 @@ const AddItemForm = (props) => {
   };
 
   const handleDone = () => {
-		if (imageToUpload === null) return;
+    if (imageToUpload === null) return;
     setIsLoading(true);
 
-    // ref means where to upload the files
     const imageRef = ref(storage, `images/${imageToUpload.name + uuidv4()}`);
 
-    // make a reference to all the files (images) in the images/ folder on firebase
-
-    // uploadBytes(where to upload, the image you want to upload)
-    // returns a Promise
     uploadBytes(imageRef, imageToUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        // setImageList((prev) => [...prev, url]);
-				itemToAdd.imageUrl = url;
-				handleClickAddItem(itemToAdd);
+        itemToAdd.imageUrl = url;
+        handleClickAddItem(itemToAdd);
         setIsLoading(false);
       });
     });
 
-		handleClickAddItem(itemToAdd);
-	};
+    handleClickAddItem(itemToAdd);
+  };
 
   return (
     <section className="add-item-section">
