@@ -51,6 +51,9 @@ function App() {
   const inputPriceRef = useRef(null);
   const inputDescriptionRef = useRef(null);
 
+
+
+
   // Hooks
   useEffect(() => {
     console.log("First render.");
