@@ -126,6 +126,11 @@ button:hover {
   padding: 1rem;
 }
 
+.card-owner {
+  padding: 1rem;
+	font-weight: bold;
+}
+
 .card-description {
   padding: 1rem;
 }
