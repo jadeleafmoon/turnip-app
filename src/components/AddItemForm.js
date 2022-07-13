@@ -1,6 +1,6 @@
 import React, { Image } from "react";
 import SellFirebase from "./SellFirebase";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
@@ -22,6 +22,7 @@ const AddItemForm = (props) => {
   const imageListRef = ref(storage, "images/");
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+  const hiddenFileInput = useRef(null);
   
 
   const uploadImage = () => {
@@ -37,6 +38,10 @@ const AddItemForm = (props) => {
       });
     });
   };
+
+  const handleUploadClick = (e) => {
+    hiddenFileInput.current.click();
+  }
 
   const handleDone = () => {
     if (imageToUpload === null) return;
@@ -101,8 +106,11 @@ const AddItemForm = (props) => {
 
       <div className="upload-container">
         <b>Upload an Image</b>
+        <button onClick={handleUploadClick}>Select Image</button>
         <input
           type="file"
+          ref={hiddenFileInput}
+          style={{display:'none'}}
           onChange={(event) => {
             setImagePreview(URL.createObjectURL(event.target.files[0]));
             setImageToUpload(event.target.files[0]);
