@@ -328,9 +328,9 @@ function App() {
               <span>{<h3> {currentUser} </h3>}</span>
             </div>
 
-            <h3 className="subtitle">
+            {/* <h3 className="subtitle">
               Welcome {currentUser}! These are your items.
-            </h3>
+            </h3> */}
             <AllItemsByOwner
               currentUser={currentUser}
               items={items}
