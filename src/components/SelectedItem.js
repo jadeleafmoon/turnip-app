@@ -26,10 +26,10 @@ const SelectedItem = (props) => {
               <img
                 // src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1326&q=80"
                 src={selectedItem.imageUrl || defaultUrl}
-                className="card-image"
+                className="card-single-image"
                 alt="item to sell"
               />
-              <h2 className="card-title">{selectedItem.title}</h2>
+              <h2 className="card-title">{selectedItem.name}</h2>
               <p className="card-owner">{selectedItem.owner}</p>
               <p className="card-description">{selectedItem.description}</p>
               <p className="card-price">{selectedItem.price}</p>

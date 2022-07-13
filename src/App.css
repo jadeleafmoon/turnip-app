@@ -60,7 +60,8 @@ button:hover {
 .button-bar {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin-top: 0em;
+  margin-top: 0em;
+	margin-bottom: 2rem;
 }
 
 .bottom-buttons-bar {
@@ -128,8 +129,16 @@ button:hover {
 	flex-direction: column;
 	justify-content: space-between;
 	cursor: pointer;
+	width: 500px;
+	/* padding: 5rem; */
 	/* background-color: purple; */
 	/* max-width: 40vw; */
+}
+
+.card-single-image {
+  height: 15rem;
+  width: 100%;
+  object-fit: cover;
 }
 
 .card:hover {
