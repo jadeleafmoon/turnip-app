@@ -13,8 +13,8 @@ export const Card = (props) => {
         <img src={img} className="card-image" alt="item to sell" />
         <h2 className="card-title">{title}</h2>
         <p className="card-owner">{item.owner}</p>
-        <p className="card-description">{description}</p>
-        <p className="card-price">{price}</p>
+        {/* <p className="card-description">{description}</p> */}
+        <p className="card-price">$ {price}</p>
       </div>
       <button className="card-button" 
       onClick={() => handleClickViewButton(item)}
