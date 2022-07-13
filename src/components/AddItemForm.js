@@ -22,6 +22,7 @@ const AddItemForm = (props) => {
   const imageListRef = ref(storage, "images/");
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+  
 
   const uploadImage = () => {
     if (imageToUpload === null) return;
@@ -39,6 +40,8 @@ const AddItemForm = (props) => {
 
   const handleDone = () => {
     if (imageToUpload === null) return;
+    
+
     setIsLoading(true);
 
     const imageRef = ref(storage, `images/${imageToUpload.name + uuidv4()}`);
@@ -95,20 +98,23 @@ const AddItemForm = (props) => {
           required
         />
       </div>
-      <div className="bottom-buttons-bar">
-        <button onClick={handleClickCancelAddItem}>Cancel</button>
-        <button onClick={() => handleDone()}>Done</button>
-      </div>
-      <hr />
+
       <div className="upload-container">
         <b>Upload an Image</b>
         <input
           type="file"
           onChange={(event) => {
+            setImagePreview(URL.createObjectURL(event.target.files[0]));
             setImageToUpload(event.target.files[0]);
           }}
         />
-
+      </div>
+      <div>
+        {imagePreview && <img className="image-preview" src={imagePreview} alt="preview"/>}
+      </div>
+      <div className="bottom-buttons-bar">
+        <button onClick={handleClickCancelAddItem}>Cancel</button>
+        <button onClick={() => handleDone()}>Done</button>
       </div>
     </section>
   );

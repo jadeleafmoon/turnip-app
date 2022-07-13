@@ -164,7 +164,7 @@ button:hover {
 	align-self: center;
 }
 
-input, textarea {
+input[type=text], textarea {
 	height: 2rem;
 	font-size: var(--font-size);
 	width: 400px;
@@ -178,3 +178,9 @@ textarea {
 	height: 5rem;
 }
 
+.image-preview {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+	margin-top: 2rem;
+}
