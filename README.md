@@ -1,5 +1,11 @@
 # Turnip App
 
+
+
+<img src="https://raw.githubusercontent.com/jadeleafmoon/turnip-app/main/src/assets/logo-turnip.png" width="300"/>
+
+
+
 Welcome to Turnip! It's an app to buy and sell used items.
 
 ## Welcome to the Front-End Repo
