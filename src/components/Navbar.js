@@ -1,14 +1,11 @@
-import React from 'react';
-import ButtonAddItem from './ButtonAddItem';
-import ButtonHome from './ButtonHome';
+import React from "react";
 
 const Navbar = (props) => {
-	const { currentView, setCurrentView, handleClickHomeButton } = props;
-	return (
-		<section className="navbar">
-			<p>TURNIP</p>
-		</section>
-	);
+  return (
+    <section className="navbar">
+      <p>TURNIP</p>
+    </section>
+  );
 };
 
 export default Navbar;

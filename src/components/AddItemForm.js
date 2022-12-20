@@ -1,4 +1,4 @@
-import React, { Image } from "react";
+import React from "react";
 import SellFirebase from "./SellFirebase";
 import { useState, useEffect, useRef } from "react";
 import { storage } from "../firebase";
@@ -10,11 +10,7 @@ const AddItemForm = (props) => {
     handleClickAddItem,
     handleAddItem,
     itemToAdd,
-    setItemToAdd,
-    setDisplayAddItem,
-    setCurrentView,
     handleClickCancelAddItem,
-    currentUser,
   } = props;
 
   const [imageToUpload, setImageToUpload] = useState(null);

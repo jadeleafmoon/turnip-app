@@ -3,7 +3,6 @@ import React from 'react';
 const EditItemForm = (props) => {
 	const {
 		selectedItem,
-		setIsEditing,
 		handleClickSaveEditButton,
 		inputNameRef,
 		inputPriceRef,

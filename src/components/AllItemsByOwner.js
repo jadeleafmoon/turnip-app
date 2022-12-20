@@ -1,12 +1,10 @@
 import React from "react";
 import { Card } from "./Card";
-import { v4 as uuidv4 } from "uuid";
 
 const AllItemsByOwner = (props) => {
   const { items, handleClickViewButton, currentUser } = props;
   const defaultUrl =
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1326&q=80";
-
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1326&q=80";
 
   return (
     <div className="card-wrapper">
@@ -15,8 +13,7 @@ const AllItemsByOwner = (props) => {
         .map((item) => {
           return (
             <Card
-
-            img={item.imageUrl || defaultUrl}
+              img={item.imageUrl || defaultUrl}
               title={item.name}
               description={item.description}
               price={item.price}
@@ -27,26 +24,6 @@ const AllItemsByOwner = (props) => {
         })}
     </div>
   );
-
-  // return (
-  // 	<section className="item-list">
-  // 		<div key={uuidv4()} className="item-card items-top-row">
-  // 			<span>Owner</span>
-  // 			<span>Item Name</span>
-  // 			<span>Price</span>
-  // 		</div>
-  // 		{items.filter((item) => item.owner === currentUser).map((item) => {
-  // 			return (
-  // 				<div key={uuidv4()} className="item-card">
-  // 					<span>{item.owner}</span>
-  // 					<span>{item.name}</span>
-  // 					<span>{item.price}</span>
-  // 					<button onClick={() => handleClickViewButton(item)}>View</button>
-  // 				</div>
-  // 			);
-  // 		})}
-  // 	</section>
-  // );
 };
 
 export default AllItemsByOwner;
