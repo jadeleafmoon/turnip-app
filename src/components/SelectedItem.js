@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonBuy from "./ButtonBuy";
-import { Card } from "./Card";
 
 const SelectedItem = (props) => {
   const {
