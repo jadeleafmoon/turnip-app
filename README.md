@@ -8,15 +8,15 @@
 
 Welcome to Turnip! It's an app to buy and sell used items.
 
-## Welcome to the Front-End Repo
+## Welcome to the Frontend Repo
 
-This is the front-end repository. Here are some links related to the project:
+This is the frontend repository. Here are some links related to the project:
 
-Back-end Repo: https://github.com/jadeleafmoon/turnip-api-2
+Backend Repo: https://github.com/jadeleafmoon/turnip-api-2
 
 ## Getting started
 
-To get Turnip to work locally, you will need to download both the front-end repo and [back-end repo](https://github.com/jadeleafmoon/turnip-api-2). The following are instructions for the front-end repo.
+To get Turnip to work locally, you will need to download both the frontend repo and [backend repo](https://github.com/jadeleafmoon/turnip-api-2). The following are instructions for the frontend repo.
 
 Download this repository.
 
@@ -35,16 +35,16 @@ CREATE DATABASE turnip_api;
 
 Turnip was built using the following tech stack.
 
-**Front-end:** 
+**Frontend:** 
 
 - **JavaScript** and CSS for logic and styling
 - **React** for creating an interactive UI
 
-**Back-end:**
+**Backend:**
 
 - **PostgreSQL** for data storage
 - **Node** and **Express** for building the API server
-- **Knex** to access the **PostegreSQL* database
+- **Knex** to access the **PostegreSQL** database
 
 **Services:**
 
