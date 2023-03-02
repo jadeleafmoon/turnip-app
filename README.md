@@ -14,13 +14,9 @@ This is the front-end repository. Here are some links related to the project:
 
 Back-end Repo: https://github.com/jadeleafmoon/turnip-api-2
 
-Live Demo: https://turnip-app.herokuapp.com/
-
-- Feel free to try the Demo and upload an item for sale! :)
-
 ## Getting started
 
-To get Tunrip to work locally, you will need to download both the front-end repo and [back-end repo](https://github.com/jadeleafmoon/turnip-api-2). The following are instructions for the front-end repo.
+To get Turnip to work locally, you will need to download both the front-end repo and [back-end repo](https://github.com/jadeleafmoon/turnip-api-2). The following are instructions for the front-end repo.
 
 Download this repository.
 
@@ -46,13 +42,14 @@ Turnip was built using the following tech stack.
 
 **Back-end:**
 
-- **PSQL** for data storage
+- **PostgreSQL** for data storage
 - **Node** and **Express** for building the API server
+- **Knex** to access the **PostegreSQL* database
 
 **Services:**
 
-- **Heroku** for deployment
-- **Firebase** for image upload and storage
+- **Railway** for deployment
+- **Firebase Storage** for uploading images
 
 
 
