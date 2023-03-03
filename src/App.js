@@ -74,6 +74,7 @@ function App() {
   };
 
   const handleClickHomeButton = () => {
+    console.log("Home pressed");
     handleDisplayAllItems();
     resetState();
   };
@@ -90,7 +91,17 @@ function App() {
         setItems(response.data);
         console.log(`🔥 Get using ${dbURL}/items`);
       })
-      .then(() => setCurrentView("home"));
+      .then(() => setCurrentView("home"))
+      .catch( (error) => {
+        if (error.response) {
+          console.log("There was an error accessing Home");
+          console.log("Response: ", error.response);
+          console.log("Data: ", error.response.data);
+          console.log("Status: ", error.response.status);
+        } else if (error.request) {
+          console.log("Request error:", error.request);
+        }
+      })
   };
 
   const handleAddItem = (e) => {
