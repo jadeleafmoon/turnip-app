@@ -89,10 +89,9 @@ function App() {
       .get(`${dbURL}/items`)
       .then((response) => {
         setItems(response.data);
-        console.log(`🔥 Get using ${dbURL}/items`);
       })
       .then(() => setCurrentView("home"))
-      .catch( (error) => {
+      .catch((error) => {
         if (error.response) {
           console.log("There was an error accessing Home");
           console.log("Response: ", error.response);
@@ -100,8 +99,10 @@ function App() {
           console.log("Status: ", error.response.status);
         } else if (error.request) {
           console.log("Request error:", error.request);
+        } else {
+          console.log("General error from pressing Home");
         }
-      })
+      });
   };
 
   const handleAddItem = (e) => {
@@ -244,7 +245,7 @@ function App() {
               <span>{<h3> {currentUser} </h3>}</span>
             </div>
             {/* <h3 className="subtitle">All Items</h3> */}
-            
+
             <AllItems
               items={items}
               handleClickViewButton={handleClickViewButton}
