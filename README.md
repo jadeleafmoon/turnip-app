@@ -12,6 +12,8 @@ Welcome to Turnip! It's an app to buy and sell used items.
 
 This is the frontend repository. Here are some links related to the project:
 
+YouTube: [Public Demo of App](https://www.youtube.com/live/jLNM3GcS53U?feature=share&t=976)
+
 Backend Repo: https://github.com/jadeleafmoon/turnip-api-2
 
 ## Getting started
