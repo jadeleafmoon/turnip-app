@@ -8,6 +8,16 @@
 
 Welcome to Turnip! It's an app to buy and sell used items.
 
+<div align="center">
+    <a href="https://www.youtube.com/live/jLNM3GcS53U?feature=share&t=976"><img src="./src/assets/turnip-demo-01.png" width="450px" style="border-radius: 5px;"></a>
+</div>
+
+## Inspiration
+
+I personally love exploring the used market for hidden gems! Unfortunately, the currently online used markets in Canada and USA are paltry compared to what I've seen in Korea. They have an outdated UI, are bulky, and not pleasant to use. 
+
+So, I decided to make my own version with an improved UI, and thinking more about what users want from a used market app and what they love about the scene.
+
 ## Welcome to the Frontend Repo
 
 This is the frontend repository. Here are some links related to the project:
@@ -15,6 +25,8 @@ This is the frontend repository. Here are some links related to the project:
 YouTube: [Public Demo of App](https://www.youtube.com/live/jLNM3GcS53U?feature=share&t=976)
 
 Backend Repo: https://github.com/jadeleafmoon/turnip-api-2
+
+
 
 ## Getting started
 
